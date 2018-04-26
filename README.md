@@ -4,6 +4,6 @@ Implementations of classic algorithm challenges
 
 ### Challenges
 
-| challenge | complexity | 
+| challenge | link | 
 |---|---|
-| String Reversing |  O(n/2) |
+| String Reversing |  [solution](string/reversing) |
