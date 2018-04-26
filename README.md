@@ -1,4 +1,4 @@
-# ALgorithms Toolbox 
+# Algorithms Toolbox 
   
 Implementations of classic algorithm challenges
 
