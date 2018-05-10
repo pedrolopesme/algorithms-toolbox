@@ -6,4 +6,5 @@ Implementations of classic algorithm challenges
 
 | challenge | link | 
 |---|---|
-| String Reversing |  [solution](string/reversing) |
+| Palindrome |  [solution](palindrome) |
+| String Reversing |  [solution](string-reversing) |
