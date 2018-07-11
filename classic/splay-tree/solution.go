@@ -44,8 +44,33 @@ func (tree *SplayTree) Remove(id int) {
 }
 
 // GetSize is a helper function that calculates tree size.
-func (tree *SplayTree) GetSize() {
-	// TODO implementation
+// TODO add tests
+func (tree *SplayTree) GetSize() int {
+	if tree.root == nil {
+		return 0
+	}
+	return tree.root.GetSize()
+}
+
+// GetSize is a helper function that calculates the size
+// from a specific node
+// TODO add tests
+func (node *Node) GetSize() int {
+	leftSize := func() int {
+		if node.left == nil {
+			return 0
+		} else {
+			return node.left.GetSize()
+		}
+	}
+	rightSize := func() int {
+		if node.right == nil {
+			return 0
+		} else {
+			return node.right.GetSize()
+		}
+	}
+	return 1 + leftSize() + rightSize()
 }
 
 // Splay splays a node to the root of the tree. If there isn't a node with
