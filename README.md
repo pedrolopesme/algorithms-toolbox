@@ -15,3 +15,4 @@ Implementations of classic algorithm challenges
 | algo | link | 
 |---|---|
 | Linked List |  [solution](classic/linked-list) |
+| Splay Tree |  [solution](classic/splay-tree) |
