@@ -56,11 +56,19 @@ func Splay(node *Node, id int) {
 }
 
 // RotateLeft is a helper that rotates node positions in a counterclockwise direction
-func (node *Node) RotateLeft() *Node {
-	// TODO implementation
+// TODO add tests
+func RotateLeft(node *Node) *Node {
+	if node == nil || node.right == nil {
+		return node
+	}
+
+	rightNode := node.right
+	node.right = rightNode.left
+	rightNode.left = node
+	return rightNode
 }
 
-// RotateLeft is a helper that rotates node positions in a clockwise direction
+// RotateRight is a helper that rotates node positions in a clockwise direction
 // TODO add tests
 func RotateRight(node *Node) *Node {
 	if node == nil || node.left == nil {
