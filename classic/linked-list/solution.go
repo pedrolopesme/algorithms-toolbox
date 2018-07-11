@@ -69,7 +69,7 @@ func (list *LinkedList) Remove(id int) {
 			previousNode.next = nil
 			list.last = previousNode
 		} else {
-			// What if the Node was in between first and last?s
+			// What if the Node was in between first and last?
 			previousNode.next = currentNode.next
 		}
 		list.size--
