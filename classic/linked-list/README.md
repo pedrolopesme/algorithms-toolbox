@@ -18,8 +18,5 @@ Source: https://en.wikipedia.org/wiki/Linked_list
 This project provides a Makefile with all common operations need to develop, 
 test and build the binary.
 
-* build: generates binaries
 * test: runs all tests
-* clean: removes binaries
-* run: executes main func
 * fmt: runs gofmt for all go files
