@@ -59,11 +59,35 @@ func (tree *SplayTree) Get(id int) *Node {
 }
 
 // Add adds a node to the tree and Splay it to root node.
+// TODO add tests
 func (tree *SplayTree) Add(id int) {
-	// TODO implementation
+	if tree.root == nil {
+		tree.root = &Node{id: id}
+		return
+	}
+
+	tree.root = Splay(tree.root, id)
+
+	if id < tree.root.id {
+		node := &Node{id: id}
+		node.left = tree.root.left
+		node.right = tree.root
+		tree.root.left = nil
+		tree.root = node
+
+	} else if id > tree.root.id {
+		node := &Node{id: id}
+		node.right = tree.root.right
+		node.left = tree.root
+		tree.root.right = nil
+		tree.root = node
+	} else {
+		tree.root.id = id
+	}
 }
 
 // Remove removes a node from the tree
+// TODO add tests
 func (tree *SplayTree) Remove(id int) {
 	if tree.root == nil {
 		return
