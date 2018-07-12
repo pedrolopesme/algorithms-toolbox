@@ -37,6 +37,7 @@ func (tree *SplayTree) FindDeepest() *Node {
 
 // SplayDeepest finds the deepest node in the
 // tree and splay it to root
+// TODO add tests
 func (tree *SplayTree) SplayDeepest() {
 	node := tree.FindDeepest()
 	if node != nil {
@@ -45,13 +46,16 @@ func (tree *SplayTree) SplayDeepest() {
 }
 
 // Get search for a node by its key and return it's value.
-func (tree *SplayTree) Get(id int) {
-	// TODO implementation
-}
-
-// GetNode search for a node by its key and return it
-func (tree *SplayTree) GetNode(id int) {
-	// TODO implementation
+// TODO add tests
+func (tree *SplayTree) Get(id int) *Node {
+	node := Splay(tree.root, id)
+	if node != nil {
+		tree.root = node
+		if tree.root.id == id {
+			return tree.root
+		}
+	}
+	return nil
 }
 
 // Add adds a node to the tree and Splay it to root node.
@@ -97,7 +101,7 @@ func (node *Node) GetSize() int {
 // Splay splays a node to the root of the tree. If there isn't a node with
 // that key, the last node along the search path for the key will be splayed to
 // the root.
-func Splay(node *Node, id int) {
+func Splay(node *Node, id int) *Node {
 	// TODO implementation
 }
 
