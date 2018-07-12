@@ -65,7 +65,20 @@ func (tree *SplayTree) Add(id int) {
 
 // Remove removes a node from the tree
 func (tree *SplayTree) Remove(id int) {
-	// TODO implementation
+	if tree.root == nil {
+		return
+	}
+
+	if tree.root.id == id {
+		if tree.root.left == nil {
+			tree.root = tree.root.right
+		} else {
+			node := tree.root.right
+			tree.root = tree.root.left
+			Splay(tree.root, id)
+			tree.root.right = node
+		}
+	}
 }
 
 // GetSize is a helper function that calculates tree size.
@@ -101,6 +114,7 @@ func (node *Node) GetSize() int {
 // Splay splays a node to the root of the tree. If there isn't a node with
 // that key, the last node along the search path for the key will be splayed to
 // the root.
+// TODO add tests
 func Splay(node *Node, id int) *Node {
 	if node == nil {
 		return nil
