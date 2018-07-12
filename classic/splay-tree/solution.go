@@ -102,7 +102,52 @@ func (node *Node) GetSize() int {
 // that key, the last node along the search path for the key will be splayed to
 // the root.
 func Splay(node *Node, id int) *Node {
-	// TODO implementation
+	if node == nil {
+		return nil
+	}
+
+	if id < node.id {
+		// Key not found in tree
+		if node.left == nil {
+			return node
+		}
+
+		if id < node.left.id {
+			node.left.left = Splay(node.left.left, id)
+			node = RotateRight(node)
+		} else if id > node.left.id {
+			node.left.right = Splay(node.left.right, id)
+			if node.left.right != nil {
+				node.left = RotateLeft(node.left)
+			}
+		}
+
+		if node.left != nil {
+			node = RotateRight(node)
+		}
+
+	} else if id > node.id {
+		// Key not found in tree
+		if node.right == nil {
+			return node
+		}
+
+		if id < node.right.id {
+			node.right.left = Splay(node.right.left, id)
+			if node.right.left != nil {
+				node.right = RotateRight(node.right)
+			}
+		} else if id > node.right.id {
+			node.right.right = Splay(node.right.right, id)
+			node = RotateLeft(node)
+		}
+
+		if node.right != nil {
+			node = RotateLeft(node)
+		}
+	}
+
+	return node
 }
 
 // RotateLeft is a helper that rotates node positions in a counterclockwise direction
