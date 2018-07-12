@@ -38,7 +38,10 @@ func (tree *SplayTree) FindDeepest() *Node {
 // SplayDeepest finds the deepest node in the
 // tree and splay it to root
 func (tree *SplayTree) SplayDeepest() {
-	// TODO implementation
+	node := tree.FindDeepest()
+	if node != nil {
+		tree.Get(node.id)
+	}
 }
 
 // Get search for a node by its key and return it's value.
