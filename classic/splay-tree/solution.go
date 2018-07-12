@@ -12,9 +12,27 @@ type Node struct {
 	right *Node
 }
 
+// calculateDeepestNode calculates the deepest node recursively
+func calculateDeepestNode(node *Node, level int, deepestLevel *int, deepestNode *Node) {
+	if node != nil {
+		level++
+		calculateDeepestNode(node.left, level, deepestLevel, deepestNode)
+		if level > *deepestLevel {
+			deepestNode = node
+			deepestLevel = &level
+		}
+		calculateDeepestNode(node.right, level, deepestLevel, deepestNode)
+	}
+}
+
 // FindDeepest returns the deepest node if it was found
-func (tree *SplayTree) FindDeepest() {
-	// TODO implementation
+// TODO add tests
+func (tree *SplayTree) FindDeepest() *Node {
+	var level = 0
+	var deepestLevel = new(int)
+	var deepestNode *Node
+	calculateDeepestNode(tree.root, level, deepestLevel, deepestNode)
+	return deepestNode
 }
 
 // SplayDeepest finds the deepest node in the
