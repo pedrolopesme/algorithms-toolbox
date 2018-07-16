@@ -46,7 +46,6 @@ func (tree *SplayTree) SplayDeepest() {
 }
 
 // Get search for a node by its key and return it's value.
-// TODO add tests
 func (tree *SplayTree) Get(id int) *Node {
 	node := Splay(tree.root, id)
 	if node != nil {
@@ -59,7 +58,6 @@ func (tree *SplayTree) Get(id int) *Node {
 }
 
 // Add adds a node to the tree and Splay it to root node.
-// TODO add tests
 func (tree *SplayTree) Add(id int) {
 	if tree.root == nil {
 		tree.root = &Node{id: id}
@@ -106,7 +104,6 @@ func (tree *SplayTree) Remove(id int) {
 }
 
 // GetSize is a helper function that calculates tree size.
-// TODO add tests
 func (tree *SplayTree) GetSize() int {
 	if tree.root == nil {
 		return 0
@@ -116,7 +113,6 @@ func (tree *SplayTree) GetSize() int {
 
 // GetSize is a helper function that calculates the size
 // from a specific node
-// TODO add tests
 func (node *Node) GetSize() int {
 	leftSize := func() int {
 		if node.left == nil {
