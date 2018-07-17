@@ -113,3 +113,70 @@ func TestRotateRight(test *testing.T) {
 	assert.Equal(test, 2, rotatedNode.right.id)
 	assert.Equal(test, 3, rotatedNode.right.right.id)
 }
+
+func TestSplayOnAnEmptyTree(test *testing.T) {
+	node := Splay(nil, 0)
+	assert.Nil(test, node)
+}
+
+func TestSplayOnATreeWithOneNode(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	node := Splay(tree.root, 1)
+	assert.Equal(test, 1, node.id)
+}
+
+func TestSplayOnATreeWithOnlyLeftSideNodes(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+	node := Splay(tree.root, 1)
+	assert.Equal(test, 1, node.id)
+	assert.Nil(test,  node.left)
+	assert.Equal(test, 2, node.right.id)
+	assert.Equal(test, 3, node.right.right.id)
+}
+
+func TestSplayOnATreeWithOnlyRightSideNodes(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(3)
+	tree.Add(2)
+	tree.Add(1)
+	node := Splay(tree.root, 3)
+	assert.Equal(test, 3, node.id)
+	assert.Nil(test,  node.right)
+	assert.Equal(test, 2, node.left.id)
+	assert.Equal(test, 1, node.left.left.id)
+}
+
+func TestSplayOnAVeryUnbalancedTree(test *testing.T) {
+	tree := SplayTree{}
+	for i := 1; i <= 1000; i++ {
+		tree.Add(i)
+	}
+
+	node := Splay(tree.root, 1000)
+	assert.Equal(test, 1000, node.id)
+	assert.Equal(test, 1000, node.GetSize())
+}
+
+func TestSplayTheDeepestNodeOnAnEmptyTree(test *testing.T) {
+	tree := SplayTree{}
+	tree.SplayDeepest()
+	assert.Nil(test, tree.root)
+}
+
+func TestSplayTheDeepestNodeToTheRoot(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(6)
+	tree.Add(5)
+	tree.Add(4)
+	tree.Add(2)
+	tree.Add(1)
+	tree.Add(3)
+
+	assert.Equal(test, 3, tree.root.id)
+	tree.SplayDeepest()
+	assert.Equal(test, 6, tree.root.id)
+}
