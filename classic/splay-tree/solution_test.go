@@ -40,12 +40,11 @@ func TestTreeSizeWithOneNode(test *testing.T) {
 
 func TestTreeSizeWithMultipleNodes(test *testing.T) {
 	tree := SplayTree{}
-	tree.Add(101)
-	tree.Add(102)
-	tree.Add(103)
-	assert.Equal(test, 3, tree.GetSize())
+	for i := 0; i < 100; i++ {
+		tree.Add(i)
+	}
+	assert.Equal(test, 100, tree.GetSize())
 }
-
 
 func TestRotateLeftAnEmptyNode(test *testing.T) {
 	assert.Nil(test, RotateLeft(nil))
@@ -53,5 +52,30 @@ func TestRotateLeftAnEmptyNode(test *testing.T) {
 
 func TestRotateLeftANodeWithNoLeafs(test *testing.T) {
 	node := Node{id: 100}
-	assert.Equal(test, node.id, RotateLeft(&node).id)
+	rotatedNode := RotateLeft(&node)
+	assert.Equal(test, node.id, rotatedNode.id)
+	assert.Nil(test, rotatedNode.left)
+	assert.Nil(test, rotatedNode.right)
+}
+
+func TestRotateLeftAWhereThereIsNoNodesInRightSide(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	tree.Add(2)
+	rotatedNode := RotateLeft(tree.root)
+	assert.Equal(test, rotatedNode.id, tree.root.id)
+	assert.Equal(test, 1, rotatedNode.left.id)
+	assert.Nil(test, rotatedNode.right)
+}
+
+func TestRotateLeft(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(3)
+	tree.Add(1)
+	tree.Add(2)
+	rotatedNode := RotateLeft(tree.root)
+	assert.Equal(test, 3, rotatedNode.id)
+	assert.Nil(test, rotatedNode.right)
+	assert.Equal(test, 2, rotatedNode.left.id)
+	assert.Equal(test, 1, rotatedNode.left.left.id)
 }
