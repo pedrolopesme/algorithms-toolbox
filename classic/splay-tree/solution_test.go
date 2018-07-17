@@ -79,3 +79,37 @@ func TestRotateLeft(test *testing.T) {
 	assert.Equal(test, 2, rotatedNode.left.id)
 	assert.Equal(test, 1, rotatedNode.left.left.id)
 }
+
+func TestRotateRightAnEmptyNode(test *testing.T) {
+	assert.Nil(test, RotateRight(nil))
+}
+
+func TestRotateRightANodeWithNoLeafs(test *testing.T) {
+	node := Node{id: 100}
+	rotatedNode := RotateRight(&node)
+	assert.Equal(test, node.id, rotatedNode.id)
+	assert.Nil(test, rotatedNode.left)
+	assert.Nil(test, rotatedNode.right)
+}
+
+func TestRotateRightAWhereThereIsNoNodesInLeftSide(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(2)
+	tree.Add(1)
+	rotatedNode := RotateRight(tree.root)
+	assert.Equal(test, rotatedNode.id, tree.root.id)
+	assert.Equal(test, 2, rotatedNode.right.id)
+	assert.Nil(test, rotatedNode.left)
+}
+
+func TestRotateRight(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(3)
+	tree.Add(1)
+	tree.Add(2)
+	rotatedNode := RotateRight(tree.root)
+	assert.Equal(test, 1, rotatedNode.id)
+	assert.Nil(test, rotatedNode.left)
+	assert.Equal(test, 2, rotatedNode.right.id)
+	assert.Equal(test, 3, rotatedNode.right.right.id)
+}
