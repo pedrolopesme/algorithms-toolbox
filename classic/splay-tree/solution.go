@@ -12,32 +12,33 @@ type Node struct {
 	right *Node
 }
 
+var deepestLevel = 0
+var deepestNode *Node
+
 // calculateDeepestNode calculates the deepest node recursively
-func calculateDeepestNode(node *Node, level int, deepestLevel *int, deepestNode *Node) {
+func calculateDeepestNode(node *Node, level int) {
 	if node != nil {
 		level++
-		calculateDeepestNode(node.left, level, deepestLevel, deepestNode)
-		if level > *deepestLevel {
+		calculateDeepestNode(node.left, level)
+		if level > deepestLevel {
 			deepestNode = node
-			deepestLevel = &level
+			deepestLevel = level
 		}
-		calculateDeepestNode(node.right, level, deepestLevel, deepestNode)
+		level++
+		calculateDeepestNode(node.right, level)
 	}
 }
 
 // FindDeepest returns the deepest node if it was found
-// TODO add tests
 func (tree *SplayTree) FindDeepest() *Node {
-	var level = 0
-	var deepestLevel = new(int)
-	var deepestNode *Node
-	calculateDeepestNode(tree.root, level, deepestLevel, deepestNode)
+	deepestLevel = 0
+	deepestNode = nil
+	calculateDeepestNode(tree.root, 0)
 	return deepestNode
 }
 
 // SplayDeepest finds the deepest node in the
 // tree and splay it to root
-// TODO add tests
 func (tree *SplayTree) SplayDeepest() {
 	node := tree.FindDeepest()
 	if node != nil {
@@ -185,7 +186,6 @@ func Splay(node *Node, id int) *Node {
 }
 
 // RotateLeft is a helper that rotates node positions in a counterclockwise direction
-// TODO add tests
 func RotateLeft(node *Node) *Node {
 	if node == nil || node.right == nil {
 		return node
@@ -198,7 +198,6 @@ func RotateLeft(node *Node) *Node {
 }
 
 // RotateRight is a helper that rotates node positions in a clockwise direction
-// TODO add tests
 func RotateRight(node *Node) *Node {
 	if node == nil || node.left == nil {
 		return node
