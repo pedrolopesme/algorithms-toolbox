@@ -3,7 +3,7 @@
 Classic Algorithms Implementations
 
 
-### Implementations
+### Common Data Structure
 
 | challenge | link | 
 |---|---|

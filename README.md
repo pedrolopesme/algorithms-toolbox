@@ -12,8 +12,10 @@ Implementations of classic algorithm challenges
 
 ## Classic
 
+### Common Data Structure
+
 | algo | link | 
 |---|---|
-| Linked List (Singly | [solution](classic/singly-linked-list) |
+| Linked List (Singly) | [solution](classic/singly-linked-list) |
 | Splay Tree |  [solution](classic/splay-tree) |
 | Stack Queue |  [solution](classic/stack) |
