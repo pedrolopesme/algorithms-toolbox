@@ -46,6 +46,22 @@ func TestPopFromANonEmptyStack(test *testing.T) {
 	assert.True(test, stack.IsEmpty())
 }
 
+func TestPeekOnAnEmptyTree(test *testing.T) {
+	stack := Stack{}
+	assert.Nil(test, stack.Peek())
+}
+
+func TestPeekOnANonEmptyTree(test *testing.T) {
+	stack := Stack{}
+	stack.Push(&Node{id: 1})
+	assert.False(test, stack.IsEmpty())
+
+	assert.Equal(test, 1, stack.Peek().id)
+	assert.False(test, stack.IsEmpty())
+
+	stack.Pop()
+	assert.True(test, stack.IsEmpty())
+}
 
 func TestIsEmptyAtAnEmptyStack(test *testing.T) {
 	stack := Stack{}

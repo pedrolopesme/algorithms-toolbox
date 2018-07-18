@@ -36,8 +36,7 @@ func (s *Stack) Pop() (node *Node) {
 // Peek return the reference from the Node at the top
 // of the stack
 func (s *Stack) Peek() (node *Node) {
-	// TODO implement and test
-	return
+	return s.first
 }
 
 // IsEmpty confirms if the stack is empty
