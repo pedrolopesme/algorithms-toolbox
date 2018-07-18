@@ -13,6 +13,30 @@ invented by Daniel Sleator and Robert Tarjan in 1985.
 
 Source: https://en.wikipedia.org/wiki/Splay_tree
 
+
+### Complexity
+
+####Time
+
+Average:
+
+| Access | Search | Insertion | Deletion | 
+|---|---|---|---|
+| - | Θ(log(n)) | Θ(log(n)) | Θ(log(n)) |
+
+Worst:
+
+| Access | Search | Insertion | Deletion | 
+|---|---|---|---|
+| - | O(log(n)) | O(log(n)) | O(log(n)) |
+
+
+####Space
+
+Worst: O(n)
+
+
+
 ### Makefile
 
 This project provides a Makefile with all common operations need to develop, 
