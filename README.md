@@ -10,9 +10,10 @@ Implementations of classic algorithm challenges
 | String Reversing |  [solution](challenges/string-reversing) |
 
 
-### Classic
+## Classic
 
 | algo | link | 
 |---|---|
 | Linked List |  [solution](classic/linked-list) |
 | Splay Tree |  [solution](classic/splay-tree) |
+| Stack Queue |  [solution](classic/stack) |

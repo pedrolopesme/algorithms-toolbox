@@ -9,3 +9,4 @@ Classic Algorithms Implementations
 |---|---|
 | Linked List |  [solution](classic/linked-list) |
 | Splay Tree |  [solution](classic/splay-tree) |
+| Stack |  [solution](classic/stack) |
