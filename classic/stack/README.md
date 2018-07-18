@@ -18,6 +18,29 @@ the stack may require taking off multiple other items first.
 
 Source: https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
 
+
+### Complexity
+
+####Time
+
+Average:
+
+| Access | Search | Insertion | Deletion | 
+|---|---|---|---|
+| Θ(n) | Θ(n) | Θ(1) | Θ(1) |
+
+Worst:
+
+| Access | Search | Insertion | Deletion | 
+|---|---|---|---|
+| O(n) | O(n) | O(1) | O(1) |
+
+
+####Space
+
+Worst: O(n)
+
+
 ### Makefile
 
 This project provides a Makefile with all common operations need to develop, 
