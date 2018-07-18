@@ -12,8 +12,14 @@ type Stack struct {
 }
 
 // Push add a node to beginning of the Stack
-func (s *Stack) Push(node *Node) {
+func (s *Stack) Push(newNode *Node) {
+	if s.first == nil {
+		s.first = newNode
+		return
+	}
 
+	newNode.next = s.first
+	s.first = newNode
 }
 
 // Pop remove a node of beginning of the Stack
