@@ -16,7 +16,7 @@ Source: https://en.wikipedia.org/wiki/Splay_tree
 
 ### Complexity
 
-####Time
+#### Time
 
 Average:
 
@@ -31,7 +31,7 @@ Worst:
 | - | O(log(n)) | O(log(n)) | O(log(n)) |
 
 
-####Space
+#### Space
 
 Worst: O(n)
 

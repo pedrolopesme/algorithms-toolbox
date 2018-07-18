@@ -15,7 +15,7 @@ Source: https://en.wikipedia.org/wiki/Linked_list
 
 ### Complexity
 
-####Time
+#### Time
 
 Average:
 
@@ -30,7 +30,7 @@ Worst:
 | O(n) | O(n) | O(n) | O(n) |
 
 
-####Space
+#### Space
 
 Worst: O(n)
 

@@ -21,7 +21,7 @@ Source: https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
 
 ### Complexity
 
-####Time
+#### Time
 
 Average:
 
@@ -36,7 +36,7 @@ Worst:
 | O(n) | O(n) | O(1) | O(1) |
 
 
-####Space
+#### Space
 
 Worst: O(n)
 
