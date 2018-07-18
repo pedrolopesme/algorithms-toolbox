@@ -86,7 +86,6 @@ func (tree *SplayTree) Add(id int) {
 }
 
 // Remove removes a node from the tree
-// TODO add tests
 func (tree *SplayTree) Remove(id int) {
 	if tree.root == nil {
 		return

@@ -207,3 +207,19 @@ func TestGetShouldSplayTheNode(test *testing.T) {
 	tree.Get(1)
 	assert.Equal(test, 1, tree.root.id)
 }
+
+func TestRemoveAnExistentNode(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	assert.Equal(test, 1, tree.Get(1).id)
+	tree.Remove(1)
+	assert.Nil(test, tree.Get(1))
+}
+
+func TestRemoveAnInexistentNode(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	assert.Equal(test, 1, tree.Get(1).id)
+	tree.Remove(2)
+	assert.Equal(test, 1, tree.Get(1).id)
+}
