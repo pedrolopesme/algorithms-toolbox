@@ -13,6 +13,28 @@ in the sequence. This structure allows for efficient insertion or removal of ele
 
 Source: https://en.wikipedia.org/wiki/Linked_list
 
+### Complexity
+
+####Time
+
+Average:
+
+| Access | Search | Insertion | Deletion | 
+|---|---|---|---|
+| Θ(n) | Θ(n) | Θ(1) | Θ(1) |
+
+Worst:
+
+| Access | Search | Insertion | Deletion | 
+|---|---|---|---|
+| O(n) | O(n) | O(n) | O(n) |
+
+
+####Space
+
+Worst: O(n)
+
+
 ### Makefile
 
 This project provides a Makefile with all common operations need to develop, 
