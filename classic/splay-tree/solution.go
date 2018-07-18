@@ -135,7 +135,6 @@ func (node *Node) GetSize() int {
 // Splay splays a node to the root of the tree. If there isn't a node with
 // that key, the last node along the search path for the key will be splayed to
 // the root.
-// TODO add tests
 func Splay(node *Node, id int) *Node {
 	if node == nil {
 		return nil
