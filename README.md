@@ -18,4 +18,4 @@ Implementations of classic algorithm challenges
 |---|---|
 | Linked List (Singly) | [solution](classic/singly-linked-list) |
 | Splay Tree |  [solution](classic/splay-tree) |
-| Stack Queue |  [solution](classic/stack) |
+| Stack |  [solution](classic/stack) |
