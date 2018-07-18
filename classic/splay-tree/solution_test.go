@@ -180,3 +180,30 @@ func TestSplayTheDeepestNodeToTheRoot(test *testing.T) {
 	tree.SplayDeepest()
 	assert.Equal(test, 6, tree.root.id)
 }
+
+func TestGetOnAnEmptyTree(test *testing.T) {
+	tree := SplayTree{}
+	assert.Nil(test, tree.Get(0))
+}
+
+func TestGetOnATreeWithOneNodeWithMatch(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	assert.Equal(test, 1, tree.Get(1).id)
+}
+
+func TestGetOnATreeWithOneNodeWithoutMatch(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	assert.Nil(test, tree.Get(2))
+}
+
+func TestGetShouldSplayTheNode(test *testing.T) {
+	tree := SplayTree{}
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+	assert.Equal(test, 3, tree.root.id)
+	tree.Get(1)
+	assert.Equal(test, 1, tree.root.id)
+}
