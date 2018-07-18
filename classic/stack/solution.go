@@ -24,8 +24,13 @@ func (s *Stack) Push(newNode *Node) {
 
 // Pop remove a node of beginning of the Stack
 func (s *Stack) Pop() (node *Node) {
-	// TODO implement and test
-	return
+	if s.first == nil {
+		return
+	}
+
+	poppedNode := s.first
+	s.first = s.first.next
+	return poppedNode
 }
 
 // Peek return the reference from the Node at the top
