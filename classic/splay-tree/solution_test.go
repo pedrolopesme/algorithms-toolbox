@@ -133,7 +133,7 @@ func TestSplayOnATreeWithOnlyLeftSideNodes(test *testing.T) {
 	tree.Add(3)
 	node := Splay(tree.root, 1)
 	assert.Equal(test, 1, node.id)
-	assert.Nil(test,  node.left)
+	assert.Nil(test, node.left)
 	assert.Equal(test, 2, node.right.id)
 	assert.Equal(test, 3, node.right.right.id)
 }
@@ -145,7 +145,7 @@ func TestSplayOnATreeWithOnlyRightSideNodes(test *testing.T) {
 	tree.Add(1)
 	node := Splay(tree.root, 3)
 	assert.Equal(test, 3, node.id)
-	assert.Nil(test,  node.right)
+	assert.Nil(test, node.right)
 	assert.Equal(test, 2, node.left.id)
 	assert.Equal(test, 1, node.left.left.id)
 }
