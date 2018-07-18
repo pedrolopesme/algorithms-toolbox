@@ -7,6 +7,6 @@ Classic Algorithms Implementations
 
 | challenge | link | 
 |---|---|
-| Linked List (Singly) |  [solution](classic/singly-linked-list) |
-| Splay Tree |  [solution](classic/splay-tree) |
-| Stack |  [solution](classic/stack) |
+| Linked List (Singly) |  [solution](/singly-linked-list) |
+| Splay Tree |  [solution](/splay-tree) |
+| Stack |  [solution](/stack) |
