@@ -27,6 +27,7 @@ func (list *LinkedList) Push(id int) {
 	list.first = newNode
 }
 
+// Append inserts a new node on the end of the list
 func (list *LinkedList) Append(id int) {
 	newNode := &Node{id: id}
 
@@ -55,7 +56,7 @@ func (list *LinkedList) Remove(id int) {
 	return
 }
 
-// TODO Implement and add Tests
+// IsEmpty checks if the list has elements or not.
 func (list *LinkedList) IsEmpty() bool {
 	return list.first == nil
 }
