@@ -18,6 +18,7 @@ func (list *LinkedList) Push(id int) {
 
 	if list.first == nil {
 		list.first = newNode
+		list.last = newNode
 		return
 	}
 
@@ -26,9 +27,18 @@ func (list *LinkedList) Push(id int) {
 	list.first = newNode
 }
 
-// TODO Implement and add Tests
 func (list *LinkedList) Append(id int) {
-	return
+	newNode := &Node{id: id}
+
+	if list.last == nil {
+		list.first = newNode
+		list.last = newNode
+		return
+	}
+
+	newNode.previous = list.last
+	list.last.next = newNode
+	list.last = newNode
 }
 
 // TODO Implement and add Tests
