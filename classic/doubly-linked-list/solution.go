@@ -1,9 +1,5 @@
 package main
 
-import (
-	"time"
-)
-
 type LinkedList struct {
 	size  uint64
 	first *Node
@@ -12,32 +8,44 @@ type LinkedList struct {
 
 type Node struct {
 	id       int
-	date     time.Time
 	next     *Node
 	previous *Node
 }
 
 // TODO Implement and add Tests
-func (list *LinkedList) Push(newNode *Node) {
+func (list *LinkedList) Push(id int) {
+	newNode := &Node{id: id}
+
+	if list.first == nil {
+		list.first = newNode
+		return
+	}
+
+	newNode.next = list.first
+	list.first.previous = newNode
+	list.first = newNode
+}
+
+// TODO Implement and add Tests
+func (list *LinkedList) Append(id int) {
 	return
 }
 
 // TODO Implement and add Tests
-func (list *LinkedList) Append(newNode *Node) {
-	return
-}
-
-
-// TODO Implement and add Tests
-func (list *LinkedList) InsertAfter(id int, newNode *Node) {
+func (list *LinkedList) InsertAfter(id int, newEntry int) {
 }
 
 // TODO Implement and add Tests
 func (list *LinkedList) Find(id int) *Node {
-	return
+	return nil
 }
 
 // TODO Implement and add Tests
 func (list *LinkedList) Remove(id int) {
 	return
+}
+
+// TODO Implement and add Tests
+func (list *LinkedList) IsEmpty() bool {
+	return list.first == nil
 }
