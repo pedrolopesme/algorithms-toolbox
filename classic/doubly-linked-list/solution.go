@@ -12,7 +12,7 @@ type Node struct {
 	previous *Node
 }
 
-// TODO Implement and add Tests
+// Push inserts a new node on the front of the list
 func (list *LinkedList) Push(id int) {
 	newNode := &Node{id: id}
 
