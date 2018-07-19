@@ -16,6 +16,7 @@ Implementations of classic algorithm challenges
 
 | algo | link | 
 |---|---|
+| singly List (Doubly) | [solution](classic/doubly-linked-list) |
 | Linked List (Singly) | [solution](classic/singly-linked-list) |
 | Splay Tree |  [solution](classic/splay-tree) |
 | Stack |  [solution](classic/stack) |
