@@ -70,3 +70,58 @@ func TestFindANonExistentNode(test *testing.T) {
 
 	assert.Nil(test, list.Find(4))
 }
+
+func TestInsertAfterAnEmptyList(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.InsertAfter(100, 1)
+
+	assert.False(test, list.IsEmpty())
+	assert.NotNil(test, list.Find(1))
+	assert.Equal(test, 1, list.Find(1).id)
+	assert.Nil(test, list.Find(1).previous)
+	assert.Nil(test, list.Find(1).next)
+}
+
+
+func TestInsertAfterTheFirstNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(3)
+	list.InsertAfter(1, 2)
+
+	assert.False(test, list.IsEmpty())
+	assert.NotNil(test, list.Find(2))
+	assert.Equal(test, 2, list.Find(2).id)
+	assert.Equal(test, 1, list.Find(2).previous.id)
+	assert.Nil(test, list.Find(2).next)
+
+}
+
+func TestInsertAfterTheLastNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(1)
+	list.InsertAfter(1, 2)
+
+	assert.False(test, list.IsEmpty())
+	assert.NotNil(test, list.Find(2))
+	assert.Equal(test, 2, list.Find(2).id)
+	assert.Equal(test, 1, list.Find(2).previous.id)
+	assert.Nil(test, list.Find(2).next)
+
+}
+
+func TestInsertAfterAnExistentNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(2)
+	list.Append(4)
+	list.InsertAfter(2, 3)
+
+	assert.False(test, list.IsEmpty())
+	assert.NotNil(test, list.Find(3))
+	assert.Equal(test, 3, list.Find(3).id)
+	assert.Equal(test, 2, list.Find(3).previous.id)
+	assert.Equal(test, 4, list.Find(3).next.id)
+
+}
