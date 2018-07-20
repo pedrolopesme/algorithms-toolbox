@@ -6,7 +6,7 @@ import (
 )
 
 func TestPushNodeToAnEmptyList(test *testing.T) {
-	list := LinkedList{}
+	list := DoublyLinkedList{}
 	list.Push(1)
 	assert.False(test, list.IsEmpty())
 	assert.Equal(test, 1, list.first.id)
@@ -14,7 +14,7 @@ func TestPushNodeToAnEmptyList(test *testing.T) {
 }
 
 func TestPushNodeToANonEmptyList(test *testing.T) {
-	list := LinkedList{}
+	list := DoublyLinkedList{}
 	list.Push(1)
 	list.Push(2)
 	list.Push(3)
@@ -25,7 +25,7 @@ func TestPushNodeToANonEmptyList(test *testing.T) {
 }
 
 func TestAppendNodeToAnEmptyList(test *testing.T) {
-	list := LinkedList{}
+	list := DoublyLinkedList{}
 	list.Append(1)
 	assert.False(test, list.IsEmpty())
 	assert.Equal(test, 1, list.last.id)
@@ -33,7 +33,7 @@ func TestAppendNodeToAnEmptyList(test *testing.T) {
 }
 
 func TestAppendNodeToANonEmptyList(test *testing.T) {
-	list := LinkedList{}
+	list := DoublyLinkedList{}
 	list.Append(1)
 	list.Append(2)
 	list.Append(3)
@@ -44,11 +44,29 @@ func TestAppendNodeToANonEmptyList(test *testing.T) {
 }
 
 func TestIsEmptyWhenListIsEmpty(test *testing.T) {
-	list := LinkedList{}
+	list := DoublyLinkedList{}
 	assert.True(test, list.IsEmpty())
 }
 
 func TestIsEmptyWhenListIsNotEmpty(test *testing.T) {
-	list := LinkedList{first: &Node{}}
+	list := DoublyLinkedList{first: &Node{}}
 	assert.False(test, list.IsEmpty())
+}
+
+func TestFindAnExistentNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(2)
+	list.Push(3)
+	assert.NotNil(test, list.Find(3))
+	assert.Equal(test, 3, list.Find(3).id)
+}
+
+func TestFindANonExistentNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(2)
+	list.Push(3)
+
+	assert.Nil(test, list.Find(4))
 }

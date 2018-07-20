@@ -1,6 +1,6 @@
 package main
 
-type LinkedList struct {
+type DoublyLinkedList struct {
 	size  uint64
 	first *Node
 	last  *Node
@@ -13,12 +13,17 @@ type Node struct {
 }
 
 // Push inserts a new node on the front of the list
-func (list *LinkedList) Push(id int) {
+func (list *DoublyLinkedList) Push(id int) {
 	newNode := &Node{id: id}
+	list.size++
 
 	if list.first == nil {
 		list.first = newNode
-		list.last = newNode
+
+		// list has only the new node
+		if list.last == nil {
+			list.last = newNode
+		}
 		return
 	}
 
@@ -28,12 +33,17 @@ func (list *LinkedList) Push(id int) {
 }
 
 // Append inserts a new node on the end of the list
-func (list *LinkedList) Append(id int) {
+func (list *DoublyLinkedList) Append(id int) {
 	newNode := &Node{id: id}
+	list.size++
 
 	if list.last == nil {
-		list.first = newNode
 		list.last = newNode
+
+		// list has only the new node
+		if list.first == nil {
+			list.first = newNode
+		}
 		return
 	}
 
@@ -43,20 +53,30 @@ func (list *LinkedList) Append(id int) {
 }
 
 // TODO Implement and add Tests
-func (list *LinkedList) InsertAfter(id int, newEntry int) {
+func (list *DoublyLinkedList) InsertAfter(id int, newEntry int) {
+}
+
+func (list *DoublyLinkedList) Find(id int) *Node {
+	if list.size == 0 {
+		return nil
+	}
+
+	currentNode := list.first
+	for currentNode.id != id {
+		if currentNode.next == nil {
+			return nil
+		}
+		currentNode = currentNode.next
+	}
+	return currentNode
 }
 
 // TODO Implement and add Tests
-func (list *LinkedList) Find(id int) *Node {
-	return nil
-}
-
-// TODO Implement and add Tests
-func (list *LinkedList) Remove(id int) {
+func (list *DoublyLinkedList) Remove(id int) {
 	return
 }
 
 // IsEmpty checks if the list has elements or not.
-func (list *LinkedList) IsEmpty() bool {
+func (list *DoublyLinkedList) IsEmpty() bool {
 	return list.first == nil
 }
