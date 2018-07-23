@@ -52,7 +52,6 @@ func (list *DoublyLinkedList) Append(id int) {
 	list.last = newNode
 }
 
-// TODO Implement and add Tests
 func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
 	if list.IsEmpty() {
 		list.Append(newEntry)
@@ -69,38 +68,40 @@ func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
 		return
 	}
 
-	//var previousNode *Node
-	//nodeIterator := list.first
-	//for nodeIterator != nil {
-	//	// its a match. Use this node right now as previousNode.
-	//	if nodeIterator.id == previousId {
-	//		previousNode = nodeIterator
-	//		break
-	//
-	//		// haven't found a match yet and no node was chose. Using
-	//		// the first node lower than the new entry
-	//	} else if previousNode == nil && nodeIterator.id < newEntry {
-	//		previousNode = nodeIterator
-	//
-	//		// haven't found a match yet but the current node iterator
-	//		// is closer to the newEntry than the current previousNode.
-	//	} else if previousNode != nil && nodeIterator.id < newEntry && previousNode.id < nodeIterator.id {
-	//		previousNode = nodeIterator
-	//	}
-	//
-	//	nodeIterator = nodeIterator.next
-	//}
-	//
-	//// No previous was found or it is the last node,
-	//// just append id to the list
-	//if previousNode == nil || previousNode.next == nil {
-	//	list.Append(newEntry)
-	//} else {
-	//	newNode := &Node{id: newEntry}
-	//	newNode.next = previousNode.next
-	//	newNode.next.previous = newNode
-	//	previousNode.next = newNode
-	//}
+	var previousNode *Node
+	nodeIterator := list.first
+	for nodeIterator != nil {
+		// its a match. Use this node as previousNode.
+		if nodeIterator.id == previousId {
+			previousNode = nodeIterator
+			break
+
+			// haven't found a match yet and no node was chose. Using
+			// the first node lower than the new entry
+		} else if previousNode == nil && nodeIterator.id < newEntry {
+			previousNode = nodeIterator
+
+			// haven't found a match yet but the current node iterator
+			// is closer to the newEntry than the current previousNode.
+		} else if previousNode != nil && nodeIterator.id < newEntry && previousNode.id < nodeIterator.id {
+			previousNode = nodeIterator
+		}
+
+		nodeIterator = nodeIterator.next
+	}
+
+
+	// No previous was found or it is the last node,
+	// just append id to the list
+	if previousNode == nil || previousNode.next == nil {
+		list.Append(newEntry)
+	} else {
+		newNode := &Node{id: newEntry}
+		newNode.previous = previousNode
+		newNode.next = previousNode.next
+		previousNode.next.previous = newNode
+		previousNode.next = newNode
+	}
 }
 
 func (list *DoublyLinkedList) Find(id int) *Node {
