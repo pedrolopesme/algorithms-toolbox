@@ -106,6 +106,8 @@ func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
 	}
 }
 
+// Find iterate over the list until it finds the
+// node and then return it.
 func (list *DoublyLinkedList) Find(id int) *Node {
 	if list.size == 0 {
 		return nil
@@ -121,9 +123,55 @@ func (list *DoublyLinkedList) Find(id int) *Node {
 	return currentNode
 }
 
-// TODO Implement and add Tests
-func (list *DoublyLinkedList) Remove(id int) {
-	return
+// Remove removes a node from the list, adjusting
+// neighborhood nodes properly. It returns the node removed.
+func (list *DoublyLinkedList) Remove(id int) *Node {
+	if list.first == nil {
+		return nil
+	}
+
+	// Node at the beginning
+	if list.first.id == id {
+		removedNode := list.first
+		list.first = list.first.next
+
+		if list.first != nil {
+			list.first.previous = nil
+		}
+		return removedNode
+	}
+
+	// Node at the end
+	if list.last.id == id {
+		removedNode := list.last
+		list.last = list.last.previous
+
+		if list.last != nil {
+			list.last.previous = nil
+		}
+		return removedNode
+	}
+
+	// Node in the middle. Iterating over the list
+	// until we get it
+	var removedNode *Node
+	nodeIterator := list.first
+	for nodeIterator != nil {
+		if nodeIterator.id == id {
+			removedNode = nodeIterator
+			break
+		}
+		nodeIterator = nodeIterator.next
+	}
+
+	// Have we found it? If so, making the dance of
+	// connecting previous/next pointers from the neighborhood nodes
+	if removedNode != nil {
+		removedNode.previous.next = removedNode.next
+		removedNode.next.previous = removedNode.previous
+	}
+
+	return removedNode
 }
 
 // IsEmpty checks if the list has elements or not.

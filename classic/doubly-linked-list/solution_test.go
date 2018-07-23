@@ -82,7 +82,7 @@ func TestInsertAfterAnEmptyList(test *testing.T) {
 	assert.Nil(test, list.Find(1).next)
 }
 
-
+// Todo fix test
 func TestInsertAfterTheFirstNode(test *testing.T) {
 	list := DoublyLinkedList{}
 	list.Append(1)
@@ -137,4 +137,54 @@ func TestInsertAfterAnInexistentNode(test *testing.T) {
 	assert.Equal(test, 4, list.Find(4).id)
 	assert.Equal(test, 2, list.Find(4).previous.id)
 	assert.Equal(test, 5, list.Find(4).next.id)
+}
+
+func TestRemoveNodeFromAnEmptyList(test *testing.T) {
+	list := DoublyLinkedList{}
+	assert.Nil(test, list.Remove(1))
+}
+
+func TestRemoveAnInexistentNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Push(1)
+	assert.Nil(test, list.Remove(2))
+	assert.False(test, list.IsEmpty())
+}
+
+func TestRemoveTheOnlyNodeInAList(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Push(1)
+	assert.Equal(test, 1, list.Remove(1).id)
+	assert.True(test, list.IsEmpty())
+}
+
+func TestRemoveTheFirstNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(2)
+	list.Append(3)
+	assert.Equal(test, 1, list.Remove(1).id)
+	assert.False(test, list.IsEmpty())
+	assert.Equal(test, 2, list.first.id)
+}
+
+func TestRemoveTheLastNode(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(2)
+	list.Append(3)
+	assert.Equal(test, 3, list.Remove(3).id)
+	assert.False(test, list.IsEmpty())
+	assert.Equal(test, 2, list.last.id)
+}
+
+func TestRemoveANodeFromTheMiddle(test *testing.T) {
+	list := DoublyLinkedList{}
+	list.Append(1)
+	list.Append(3)
+	list.Append(5)
+	assert.Equal(test, 3, list.Remove(3).id)
+	assert.False(test, list.IsEmpty())
+	assert.Equal(test, 1, list.first.id)
+	assert.Equal(test, 5, list.first.next.id)
 }
