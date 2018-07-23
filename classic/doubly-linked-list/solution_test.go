@@ -125,7 +125,7 @@ func TestInsertAfterAnExistentNode(test *testing.T) {
 	assert.Equal(test, 4, list.Find(3).next.id)
 }
 
-func TestInsertAfterAInexistentNode(test *testing.T) {
+func TestInsertAfterAnInexistentNode(test *testing.T) {
 	list := DoublyLinkedList{}
 	list.Append(1)
 	list.Append(2)
