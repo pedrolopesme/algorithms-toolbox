@@ -52,6 +52,9 @@ func (list *DoublyLinkedList) Append(id int) {
 	list.last = newNode
 }
 
+// InsertAfter inserts a new node after a given previous Id. If the
+// previous ID does'nt exist, it tries to use the closest ID lower
+// than the given one.
 func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
 	if list.IsEmpty() {
 		list.Append(newEntry)
@@ -89,7 +92,6 @@ func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
 
 		nodeIterator = nodeIterator.next
 	}
-
 
 	// No previous was found or it is the last node,
 	// just append id to the list
