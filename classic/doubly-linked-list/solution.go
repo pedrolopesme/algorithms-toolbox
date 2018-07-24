@@ -56,6 +56,7 @@ func (list *DoublyLinkedList) Append(id int) {
 // previous ID does'nt exist, it tries to use the closest ID lower
 // than the given one.
 func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
+	list.size++
 	if list.IsEmpty() {
 		list.Append(newEntry)
 		return
@@ -129,6 +130,7 @@ func (list *DoublyLinkedList) Remove(id int) *Node {
 		if list.first != nil {
 			list.first.previous = nil
 		}
+		list.size--
 		return removedNode
 	}
 
@@ -140,6 +142,7 @@ func (list *DoublyLinkedList) Remove(id int) *Node {
 		if list.last != nil {
 			list.last.previous = nil
 		}
+		list.size--
 		return removedNode
 	}
 
@@ -160,6 +163,7 @@ func (list *DoublyLinkedList) Remove(id int) *Node {
 	if removedNode != nil {
 		removedNode.previous.next = removedNode.next
 		removedNode.next.previous = removedNode.previous
+		list.size--
 	}
 
 	return removedNode
