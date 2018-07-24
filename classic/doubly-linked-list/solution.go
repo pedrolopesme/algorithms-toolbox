@@ -61,21 +61,12 @@ func (list *DoublyLinkedList) InsertAfter(previousId int, newEntry int) {
 		return
 	}
 
-	if list.first.id == previousId {
-		list.Append(newEntry)
-		return
-	}
-
-	if list.last.id == previousId {
-		list.Append(newEntry)
-		return
-	}
-
 	var previousNode *Node
 	nodeIterator := list.first
 	for nodeIterator != nil {
 		// its a match. Use this node as previousNode.
 		if nodeIterator.id == previousId {
+
 			previousNode = nodeIterator
 			break
 

@@ -93,21 +93,21 @@ func TestInsertAfterTheFirstNode(test *testing.T) {
 	assert.NotNil(test, list.Find(2))
 	assert.Equal(test, 2, list.Find(2).id)
 	assert.Equal(test, 1, list.Find(2).previous.id)
-	assert.Nil(test, list.Find(2).next)
+	assert.Equal(test, 3, list.Find(2).next.id)
 
 }
 
 func TestInsertAfterTheLastNode(test *testing.T) {
 	list := DoublyLinkedList{}
 	list.Append(1)
-	list.Append(1)
-	list.InsertAfter(1, 2)
+	list.Append(2)
+	list.InsertAfter(2, 3)
 
 	assert.False(test, list.IsEmpty())
-	assert.NotNil(test, list.Find(2))
-	assert.Equal(test, 2, list.Find(2).id)
-	assert.Equal(test, 1, list.Find(2).previous.id)
-	assert.Nil(test, list.Find(2).next)
+	assert.NotNil(test, list.Find(3))
+	assert.Equal(test, 3, list.Find(3).id)
+	assert.Equal(test, 2, list.Find(3).previous.id)
+	assert.Nil(test, list.Find(3).next)
 
 }
 
