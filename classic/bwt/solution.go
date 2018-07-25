@@ -4,7 +4,6 @@ import "sort"
 
 // generatePermutations computes the block
 // permutations needed to the BWT
-// TODO add tests
 func generatePermutations(str string) (permutations []string) {
 	i := 0
 	for i < len(str) {
