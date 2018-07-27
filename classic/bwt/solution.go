@@ -36,10 +36,8 @@ func Transform(str string) (index int, transform string) {
 
 // getIndexes returns the index of each mapped symbol
 // from the sorted string
-// todo add tests
 func getIndexes(str string, sorted []string) (indexes []int) {
 	usedPositions := make(map[int]bool)
-
 	i := 0
 	for i < len(str) {
 		j := 0

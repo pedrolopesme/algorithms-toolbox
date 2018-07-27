@@ -47,3 +47,7 @@ func TestStringInverseTransformationWithEmptyString(test *testing.T) {
 	index, transformation := Transform(expectedOutput)
 	assert.Equal(test, expectedOutput, InverseTransform(transformation, index))
 }
+
+func TestGetIndexes(test *testing.T) {
+	assert.Equal(test, []int{1,3,4,2,0}, getIndexes("EPROD", []string{"D", "E", "O","P", "R"}))
+}
