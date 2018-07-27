@@ -36,13 +36,13 @@ func Transform(str string) (transform string) {
 // getIndexes returns the index of each mapped symbol
 // from the sorted string
 // todo add tests
-func getIndexes(str string, sorted string) (indexes []int) {
+func getIndexes(str string, sorted []string) (indexes []int) {
 	usedPositions := make(map[int]bool)
 	i := 0
 	j := 0
 	for i < len(str) {
 		for j < len(sorted) {
-			if sorted[i] == str[i] && !usedPositions[j] {
+			if sorted[i] == string(str[i]) && !usedPositions[j] {
 				usedPositions[j] = true
 				indexes = append(indexes, j)
 			}
@@ -56,6 +56,20 @@ func getIndexes(str string, sorted string) (indexes []int) {
 // InverseTransform reverses a Burrows-Wheeler transform
 // to the original string
 // TODO implement and add tests
-func InverseTransform() (tranform string) {
+func InverseTransform(transformed string, originalIndex int) (original string) {
+	var sorted []string
+	i := 0
+	for i < len(transformed) {
+		sorted = append(sorted, string(transformed[i]))
+		i++
+	}
+	sort.Strings(sorted)
+	indexes := getIndexes(transformed, sorted)
+	i = 0
+	for i < len(transformed) {
+		char := string(transformed[originalIndex])
+		original = char + original
+		originalIndex = indexes[originalIndex]
+	}
 	return
 }
