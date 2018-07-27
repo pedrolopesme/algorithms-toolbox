@@ -47,6 +47,7 @@ func getIndexes(str string, sorted []string) (indexes []int) {
 			if sorted[j] == string(str[i]) && !usedPositions[j] {
 				usedPositions[j] = true
 				indexes = append(indexes, j)
+				break
 			}
 			j++
 		}
@@ -57,7 +58,6 @@ func getIndexes(str string, sorted []string) (indexes []int) {
 
 // InverseTransform reverses a Burrows-Wheeler transform
 // to the original string
-// TODO implement and add tests
 func InverseTransform(transformed string, originalIndex int) (original string) {
 	var sorted []string
 	i := 0
@@ -67,7 +67,6 @@ func InverseTransform(transformed string, originalIndex int) (original string) {
 	}
 	sort.Strings(sorted)
 	indexes := getIndexes(transformed, sorted)
-
 	i = 0
 	for i < len(transformed) {
 		char := string(transformed[originalIndex])
