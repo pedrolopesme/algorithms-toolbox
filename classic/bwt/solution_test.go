@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"fmt"
 )
 
 func TestPermutations(test *testing.T) {
@@ -25,11 +26,23 @@ func TestPermutationsWithEmptyString(test *testing.T) {
 func TestStringTransformation(test *testing.T) {
 	input := "SIX.MIXED.PIXIES.SIFT.SIXTY.PIXIE.DUST.BOXES"
 	expectedOutput := "TEXYDST.E.IXIXIXXSSMPPS.B..E.S.EUSFXDIIOIIIT"
-	assert.Equal(test, expectedOutput, Transform(input))
+	_, tranformation := Transform(input)
+	assert.Equal(test, expectedOutput, tranformation)
 }
 
 func TestStringTransformationWithNoString(test *testing.T) {
 	input := ""
 	expectedOutput := ""
-	assert.Equal(test, expectedOutput, Transform(input))
+	_, tranformation := Transform(input)
+	assert.Equal(test, expectedOutput, tranformation)
+}
+
+func TestStringInverseTransformation(test *testing.T) {
+	input := "TEXYDST.E.IXIXIXXSSMPPS.B..E.S.EUSFXDIIOIIIT"
+	expectedOutput := "SIX.MIXED.PIXIES.SIFT.SIXTY.PIXIE.DUST.BOXES"
+	index, tranformation := Transform(input)
+
+	fmt.Println(index)
+
+	assert.Equal(test, expectedOutput, InverseTransform(tranformation, index))
 }

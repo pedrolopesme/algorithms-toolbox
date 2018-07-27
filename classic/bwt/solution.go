@@ -1,6 +1,8 @@
 package main
 
-import "sort"
+import (
+	"sort"
+)
 
 // generatePermutations computes the block
 // permutations needed to the BWT
@@ -14,16 +16,16 @@ func generatePermutations(str string) (permutations []string) {
 }
 
 // Transform returns a Burrows-Wheeler transformation
-func Transform(str string) (transform string) {
+func Transform(str string) (index int, transform string) {
 	permutations := generatePermutations(str)
 	sort.Strings(permutations)
 
-	for index := range permutations {
+	for index = range permutations {
 		permutation := permutations[index]
 		transform += string(permutation[len(permutation)-1])
 	}
 
-	for index := range permutations {
+	for index = range permutations {
 		if permutations[index] == str {
 			break
 		}
@@ -37,11 +39,12 @@ func Transform(str string) (transform string) {
 // todo add tests
 func getIndexes(str string, sorted []string) (indexes []int) {
 	usedPositions := make(map[int]bool)
+
 	i := 0
-	j := 0
 	for i < len(str) {
+		j := 0
 		for j < len(sorted) {
-			if sorted[i] == string(str[i]) && !usedPositions[j] {
+			if sorted[j] == string(str[i]) && !usedPositions[j] {
 				usedPositions[j] = true
 				indexes = append(indexes, j)
 			}
@@ -64,11 +67,13 @@ func InverseTransform(transformed string, originalIndex int) (original string) {
 	}
 	sort.Strings(sorted)
 	indexes := getIndexes(transformed, sorted)
+
 	i = 0
 	for i < len(transformed) {
 		char := string(transformed[originalIndex])
 		original = char + original
 		originalIndex = indexes[originalIndex]
+		i++
 	}
 	return
 }
