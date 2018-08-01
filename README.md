@@ -8,6 +8,7 @@ Implementations of classic algorithm challenges
 |---|---|
 | Palindrome |  [solution](challenges/palindrome) |
 | String Reversing |  [solution](challenges/string-reversing) |
+| Two Strings Common Substr |  [solution](challenges/two-strings-common-substr) |
 
 
 ## Classic
