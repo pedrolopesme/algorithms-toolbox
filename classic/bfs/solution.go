@@ -22,3 +22,8 @@ func NewGraph() *BaseGraph {
 		nodes: make(map[int][]int),
 	}
 }
+
+// TODO implement and test BFS
+func BFS() {
+
+}
