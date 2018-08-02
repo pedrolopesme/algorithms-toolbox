@@ -19,11 +19,16 @@ Implementations of classic algorithm challenges
 |---|---|
 | singly List (Doubly) | [solution](classic/doubly-linked-list) |
 | Linked List (Singly) | [solution](classic/singly-linked-list) |
-| Splay Tree |  [solution](classic/splay-tree) |
 | Stack |  [solution](classic/stack) |
 
 ### String Algorithms
 
 | algorithm | link | 
 |---|---|
-| Burrows-Wheeler transform |  [solution](classic/bwt) |
+| Burrows-Wheeler transform (BWT) |  [solution](classic/bwt) |
+
+### Trees and Graphs
+| algorithm | link | 
+|---|---|
+| Breath-first search (BFS) |  [solution](classic/bfs) |
+| Splay Tree |  [solution](classic/splay-tree) |
