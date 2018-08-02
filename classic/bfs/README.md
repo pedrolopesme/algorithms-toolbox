@@ -1,4 +1,4 @@
-# Burrows-Wheeler transform
+# Breath-first search
 
 
 ### Description
