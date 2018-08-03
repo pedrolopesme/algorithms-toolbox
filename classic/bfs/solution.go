@@ -35,16 +35,13 @@ func NewGraph(totalOfVertices int) *BaseGraph {
 
 // TODO implement and test BFS
 func BFS(current int, graph Graph) (path []int) {
+	queue := []int{current}
 	visited := make([]bool, graph.GetVerticesTotal())
-	queue := make([]int, graph.GetVerticesTotal())
-
 	visited[current] = true
-	queue = append([]int{current}, queue...)
 
 	for len(queue) > 0 {
 		var item int
 		item, queue = queue[0], queue[1:]
-
 		path = append(path, item)
 		for _, adj := range graph.GetAdjacencies(item) {
 			if !visited[adj] {
