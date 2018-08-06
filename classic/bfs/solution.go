@@ -3,6 +3,7 @@ package main
 type Graph interface {
 	GetVerticesTotal() int
 	AddEdges(vertex1 int, vertex2 int)
+	GetEdges() map[int][]int
 	GetAdjacencies(vertex int) []int
 }
 
@@ -16,6 +17,10 @@ type BaseGraph struct {
 
 func (g BaseGraph) GetVerticesTotal() int {
 	return g.vertices
+}
+
+func (g BaseGraph) GetEdges() map[int][]int {
+	return g.edges
 }
 
 func (g BaseGraph) AddEdges(vertex1 int, vertex2 int) {
@@ -33,7 +38,6 @@ func NewGraph(totalOfVertices int) *BaseGraph {
 	}
 }
 
-// TODO implement and test BFS
 func BFS(current int, graph Graph) (path []int) {
 	queue := []int{current}
 	visited := make([]bool, graph.GetVerticesTotal())
@@ -46,7 +50,7 @@ func BFS(current int, graph Graph) (path []int) {
 		for _, adj := range graph.GetAdjacencies(item) {
 			if !visited[adj] {
 				visited[adj] = true
-				queue = append([]int{adj}, queue...)
+				queue = append(queue, adj)
 			}
 		}
 	}
