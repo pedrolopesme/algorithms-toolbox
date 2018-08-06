@@ -31,4 +31,5 @@ Implementations of classic algorithm challenges
 | algorithm | link | 
 |---|---|
 | Breath-first search (BFS) |  [solution](classic/bfs) |
+| Depth-first search (DFS) |  [solution](classic/dfs) |
 | Splay Tree |  [solution](classic/splay-tree) |

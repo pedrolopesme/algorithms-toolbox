@@ -23,4 +23,5 @@ Classic Algorithms Implementations
 | algorithm | link | 
 |---|---|
 | Breath-first search (BFS) |  [solution](bfs) |
+| Depth-first search (DFS) |  [solution](dfs) |
 | Splay Tree |  [solution](splay-tree) |
