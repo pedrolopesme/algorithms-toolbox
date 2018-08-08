@@ -38,19 +38,18 @@ func NewGraph(totalOfVertices int) *BaseGraph {
 	}
 }
 
-func DFS(G Graph, vertex int, visited *map[int]bool, path *[]int) {
+func RunDFS(G Graph, vertex int, visited *map[int]bool, path *[]int) {
 	(*visited)[vertex] = true
 	*path = append(*path, vertex)
 	for _, adj := range G.GetAdjacencies(vertex) {
 		if !(*visited)[adj] {
-			DFS(G, adj, visited, path)
+			RunDFS(G, adj, visited, path)
 		}
 	}
 }
 
-// RunDFS just make it easier to run DFS
-func RunDFS(G Graph, vertex int) (path []int) {
+func DFS(G Graph, vertex int) (path []int) {
 	visited := make(map[int]bool, G.GetVerticesTotal())
-	DFS(G, vertex, &visited, &path)
+	RunDFS(G, vertex, &visited, &path)
 	return
 }
