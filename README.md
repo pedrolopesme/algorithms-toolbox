@@ -23,7 +23,13 @@ Implementations of classic algorithm challenges
 ### String Algorithms
 | algorithm | link | 
 |---|---|
-| Insertion Sort | [solution](insertion-sort) |
+| Insertion Sort | [solution](classic/insertion-sort) |
+
+### Sorting Algorithms
+| algorithm | link | 
+|---|---|
+| Insertion Sort | [solution](classic/insertion-sort) |
+| Selection Sort | [solution](classic/selection-sort) |
 
 ### Trees and Graphs
 | algorithm | link | 
