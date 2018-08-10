@@ -14,7 +14,6 @@ Implementations of classic algorithm challenges
 ## Classic
 
 ### Common Data Structure
-
 | algorithm | link | 
 |---|---|
 | singly List (Doubly) | [solution](classic/doubly-linked-list) |
@@ -22,10 +21,9 @@ Implementations of classic algorithm challenges
 | Stack |  [solution](classic/stack) |
 
 ### String Algorithms
-
 | algorithm | link | 
 |---|---|
-| Burrows-Wheeler transform (BWT) |  [solution](classic/bwt) |
+| Insertion Sort | [solution](insertion-sort) |
 
 ### Trees and Graphs
 | algorithm | link | 

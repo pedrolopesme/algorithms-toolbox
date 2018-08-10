@@ -11,11 +11,15 @@ Classic Algorithms Implementations
 | Stack |  [solution](stack) |
 
 
+### Sorting Algorithms
+| algorithm | link | 
+|---|---|
+| Insertion Sort | [solution](insertion-sort) |
+
 ### String Algorithms
 | algorithm | link | 
 |---|---|
 | Burrows-Wheeler transform (BWT) | [solution](bwt) |
-
 
 ### Trees and Graphs
 | algorithm | link | 
