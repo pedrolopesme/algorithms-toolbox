@@ -14,6 +14,7 @@ Classic Algorithms Implementations
 ### Sorting Algorithms
 | algorithm | link | 
 |---|---|
+| Heap Sort | [solution](heap-sort) |
 | Insertion Sort | [solution](insertion-sort) |
 | Merge Sort | [solution](merge-sort) |
 | Selection Sort | [solution](selection-sort) |
