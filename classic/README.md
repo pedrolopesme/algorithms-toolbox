@@ -15,6 +15,7 @@ Classic Algorithms Implementations
 | algorithm | link | 
 |---|---|
 | Insertion Sort | [solution](insertion-sort) |
+| Merge Sort | [solution](merge-sort) |
 | Selection Sort | [solution](selection-sort) |
 
 ### String Algorithms
