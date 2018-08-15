@@ -28,6 +28,7 @@ Implementations of classic algorithm challenges
 ### Sorting Algorithms
 | algorithm | link | 
 |---|---|
+| Bubble | [solution](classic/bubble) |
 | QuickSort | [solution](classic/quicksort) |
 | Heap Sort | [solution](classic/heap-sort) |
 | Insertion Sort | [solution](classic/insertion-sort) |

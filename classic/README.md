@@ -14,6 +14,7 @@ Classic Algorithms Implementations
 ### Sorting Algorithms
 | algorithm | link | 
 |---|---|
+| Bubble | [solution](bubble) |
 | QuickSort | [solution](quicksort) |
 | Heap Sort | [solution](heap-sort) |
 | Insertion Sort | [solution](insertion-sort) |
