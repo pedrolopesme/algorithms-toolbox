@@ -34,6 +34,7 @@ Implementations of classic algorithm challenges
 | Insertion Sort | [solution](classic/insertion-sort) |
 | Merge Sort | [solution](classic/merge-sort) |
 | Selection Sort | [solution](classic/selection-sort) |
+| Shell Sort | [solution](classic/shellsort) |
 
 ### Trees and Graphs
 | algorithm | link | 
