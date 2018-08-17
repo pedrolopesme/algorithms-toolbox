@@ -16,6 +16,7 @@ Classic Algorithms Implementations
 |---|---|
 | Bubble | [solution](bubble) |
 | Comb Sort | [solution](comb-sort) |
+| Count Sort | [solution](count-sort) |
 | QuickSort | [solution](quicksort) |
 | Heap Sort | [solution](heap-sort) |
 | Insertion Sort | [solution](insertion-sort) |

@@ -30,6 +30,7 @@ Implementations of classic algorithm challenges
 |---|---|
 | Bubble | [solution](classic/bubble) |
 | Comb Sort | [solution](classic/comb-sort) |
+| Count Sort | [solution](classic/count-sort) |
 | QuickSort | [solution](classic/quicksort) |
 | Heap Sort | [solution](classic/heap-sort) |
 | Insertion Sort | [solution](classic/insertion-sort) |
