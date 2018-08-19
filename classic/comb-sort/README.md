@@ -17,11 +17,6 @@ from one another in the array, rather than only swapping elements if they are
 adjacent to one another, and then shrinking the chosen distance until it is 
 operating as a normal bubble sort. 
 
-Thus, if Shellsort can be thought of as a generalized version of insertion sort 
-that swaps elements spaced a certain distance away from one another, comb sort 
-can be thought of as the same generalization applied to bubble sort.
-
-
 ![Comb sort](https://upload.wikimedia.org/wikipedia/commons/4/46/Comb_sort_demo.gif)
 
 Source: https://en.wikipedia.org/wiki/Comb_sort
