@@ -35,6 +35,7 @@ Implementations of classic algorithm challenges
 | Heap Sort | [solution](classic/heap-sort) |
 | Insertion Sort | [solution](classic/insertion-sort) |
 | Merge Sort | [solution](classic/merge-sort) |
+| Radix Sort | [solution](classic/radix-sort) |
 | Selection Sort | [solution](classic/selection-sort) |
 | Shell Sort | [solution](classic/shellsort) |
 

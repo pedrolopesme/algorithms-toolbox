@@ -22,6 +22,7 @@ Classic Algorithms Implementations
 | Insertion Sort | [solution](insertion-sort) |
 | Merge Sort | [solution](merge-sort) |
 | Selection Sort | [solution](selection-sort) |
+| Radix Sort | [solution](radix-sort) |
 | Shell Sort | [solution](shellsort) |
 
 ### String Algorithms
