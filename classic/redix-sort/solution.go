@@ -1,38 +1,39 @@
 package main
 
-import "math"
-
-func CombSort(arr []int) []int {
-	gap := len(arr)
-	shrinkRatio := 1.3
-	sorted := false
-
-	for !sorted {
-		gap = int(math.Floor(float64(gap) / shrinkRatio))
-
-		if gap > 1 {
-			sorted = false
-		} else {
-			gap = 1
-			sorted = true
-		}
-
-		i := 0
-		for i+gap < len(arr) {
-			if arr[i] > arr[i+gap] {
-				arr = swap(arr, i, i+gap)
-				sorted = false
-			}
-			i++
+func findBiggestNumber(arr []int) (biggest int) {
+	for _, num := range arr {
+		if num > biggest {
+			biggest = num
 		}
 	}
-
-	return arr
+	return
 }
 
-func swap(arr []int, i int, j int) []int {
-	temp := arr[i]
-	arr[i] = arr[j]
-	arr[j] = temp
+func RadixSort(arr []int) []int {
+	biggest := findBiggestNumber(arr)
+	size := len(arr)
+	tempArr := make([]int, size, size)
+	digit := 1
+
+	for biggest/digit > 0 {
+		buckets := [10]int{0}
+
+		for i := 0; i < size; i++ {
+			buckets[(arr[i]/digit)%10]++
+		}
+
+		for i := 1; i < 10; i++ {
+			buckets[i] += buckets[i-1]
+		}
+
+		for i := size - 1; i >= 0; i-- {
+			buckets[(arr[i]/digit)%10]--
+			tempArr[buckets[(arr[i]/digit)%10]] = arr[i]
+		}
+
+		arr = tempArr
+		digit *= 10
+	}
+
 	return arr
 }
