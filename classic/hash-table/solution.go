@@ -41,15 +41,16 @@ func NewHashTable() HashTable {
 }
 
 // Get returns the hashentry from a given key
-// TODO implement and add tests
 // TODO what if occurs a hash collision?
-func (ht HashTable) Get(key int) HashEntry {
+func (ht HashTable) Get(key int) (entry HashEntry) {
 	hash := hashFunc(key)
-	return ht.table[hash]
+	if val, ok := ht.table[hash]; ok {
+		entry = val
+	}
+	return
 }
 
 // Put adds a hash entry into my table
-// TODO implement and add tests.
 // TODO what if occurs a hash collision?
 func (ht HashTable) Put(entry HashEntry) {
 	hash := hashFunc(entry.key)
