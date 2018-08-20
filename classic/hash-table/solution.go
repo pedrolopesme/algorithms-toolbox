@@ -5,6 +5,7 @@ const TableSize = 256
 
 // HashEntry represents an entry with an int key
 // and an empty interface to hold the value
+// TODO add new item pointer in order to create a singly linked list
 type HashEntry struct {
 	key   int
 	value interface{}
@@ -28,24 +29,34 @@ type IHashTable interface {
 // HashTable
 type HashTable struct {
 	size  int
-	table []HashEntry
+	table map[int]HashEntry
 }
 
 // NewHashTable knows how to build a HashTable
 func NewHashTable() HashTable {
 	return HashTable{
 		size:  TableSize,
-		table: make([]HashEntry, TableSize, TableSize),
+		table: make(map[int]HashEntry),
 	}
 }
 
 // Get returns the hashentry from a given key
 // TODO implement and add tests
+// TODO what if occurs a hash collision?
 func (ht HashTable) Get(key int) HashEntry {
-	return HashEntry{}
+	hash := hashFunc(key)
+	return ht.table[hash]
 }
 
 // Put adds a hash entry into my table
-// TODO implement and add tests
+// TODO implement and add tests.
+// TODO what if occurs a hash collision?
 func (ht HashTable) Put(entry HashEntry) {
+	hash := hashFunc(entry.key)
+	ht.table[hash] = entry
+}
+
+// hashFunc knows how to generate a hash from key
+func hashFunc(key int) int {
+	return key % TableSize
 }
