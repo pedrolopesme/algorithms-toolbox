@@ -6,9 +6,10 @@ Classic Algorithms Implementations
 ### Common Data Structure
 | algorithm | link | 
 |---|---|
+| Hash Table | [solution](hash-table) |
 | Linked List (Singly) | [solution](singly-linked-list) |
 | Linked List (Doubly) | [solution](doubly-linked-list) |
-| Stack |  [solution](stack) |
+| Stack | [solution](stack) |
 
 
 ### Sorting Algorithms
