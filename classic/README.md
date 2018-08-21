@@ -11,6 +11,13 @@ Classic Algorithms Implementations
 | Linked List (Doubly) | [solution](doubly-linked-list) |
 | Stack | [solution](stack) |
 
+### Graphs and Trees
+| algorithm | link | 
+|---|---|
+| AVL Tree | [solution](avl-tree) |
+| Breath-first search (BFS) | [solution](bfs) |
+| Depth-first search (DFS) | [solution](dfs) |
+| Splay Tree | [solution](splay-tree) |
 
 ### Sorting Algorithms
 | algorithm | link | 
@@ -30,10 +37,3 @@ Classic Algorithms Implementations
 | algorithm | link | 
 |---|---|
 | Burrows-Wheeler transform (BWT) | [solution](bwt) |
-
-### Trees and Graphs
-| algorithm | link | 
-|---|---|
-| Breath-first search (BFS) | [solution](bfs) |
-| Depth-first search (DFS) | [solution](dfs) |
-| Splay Tree | [solution](splay-tree) |

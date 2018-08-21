@@ -21,10 +21,13 @@ Implementations of classic algorithm challenges
 | Linked List (Singly) | [solution](classic/singly-linked-list) |
 | Stack | [solution](classic/stack) |
 
-### String Algorithms
+### Graphs and Trees
 | algorithm | link | 
 |---|---|
-| Insertion Sort | [solution](classic/insertion-sort) |
+| AVL Tree | [solution](classic/avl-tree) |
+| Breath-first search (BFS) | [solution](classic/bfs) |
+| Depth-first search (DFS) | [solution](classic/dfs) |
+| Splay Tree |  [solution](classic/splay-tree) |
 
 ### Sorting Algorithms
 | algorithm | link | 
@@ -40,9 +43,7 @@ Implementations of classic algorithm challenges
 | Selection Sort | [solution](classic/selection-sort) |
 | Shell Sort | [solution](classic/shellsort) |
 
-### Trees and Graphs
+### String Algorithms
 | algorithm | link | 
 |---|---|
-| Breath-first search (BFS) | [solution](classic/bfs) |
-| Depth-first search (DFS) | [solution](classic/dfs) |
-| Splay Tree |  [solution](classic/splay-tree) |
+| Burrows-Wheeler transform (BWT) | [solution](classic/bwt) |
