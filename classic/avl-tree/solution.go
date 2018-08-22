@@ -15,7 +15,7 @@ type Node struct {
 }
 
 // GetIds is a utility func that
-// visits all nodes and return theirs ids
+// visits all nodes and return their ids
 // TODO add tests
 func GetIds(node *Node) []int {
 	if node != nil {
