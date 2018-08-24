@@ -96,7 +96,6 @@ func Append(node *Node, newNode *Node) *Node {
 }
 
 // IsLeaf checks if a node is leafs
-// TODO add tests
 func (node Node) IsLeaf() bool {
 	return node.height == 0
 }
