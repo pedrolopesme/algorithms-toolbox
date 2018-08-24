@@ -83,4 +83,50 @@ func TestRotateLeftWithNodesOnBothSides(test *testing.T) {
 	assert.Equal(test, 3, rotatedNode.id)
 	assert.Equal(test, 2, rotatedNode.left.id)
 	assert.Equal(test, 1, rotatedNode.left.left.id)
+
+	assert.Nil(test, rotatedNode.right)
+	assert.Nil(test, rotatedNode.left.right)
+}
+
+func TestRotateRightWithSingleNode(test *testing.T) {
+	node := &Node{id: 10}
+	rotatedNode := RotateRight(node)
+	assert.Equal(test, rotatedNode.id, node.id)
+	assert.Nil(test, rotatedNode.left)
+	assert.Nil(test, rotatedNode.right)
+}
+
+func TestRotateRightWithNodeOnTheLeftOnly(test *testing.T) {
+	node := &Node{
+		id:   2,
+		left: &Node{id: 1, height: 1},
+	}
+	rotatedNode := RotateRight(node)
+	assert.Equal(test, 1, rotatedNode.id)
+	assert.Equal(test, 2, rotatedNode.right.id)
+}
+
+func TestRotateRightWithNodeOnTheRightOnly(test *testing.T) {
+	node := &Node{
+		id:    1,
+		right: &Node{id: 2, height: 1},
+	}
+	rotatedNode := RotateRight(node)
+	assert.Equal(test, 1, rotatedNode.id)
+	assert.Equal(test, 2, rotatedNode.right.id)
+}
+
+func TestRotateRightWithNodesOnBothSides(test *testing.T) {
+	node := &Node{
+		id:    2,
+		left:  &Node{id: 1, height: 1},
+		right: &Node{id: 3, height: 1},
+	}
+	rotatedNode := RotateRight(node)
+
+	assert.Equal(test, 1, rotatedNode.id)
+	assert.Equal(test, 2, rotatedNode.right.id)
+	assert.Equal(test, 3, rotatedNode.right.right.id)
+	assert.Nil(test, rotatedNode.left)
+	assert.Nil(test, rotatedNode.right.left)
 }

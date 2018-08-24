@@ -134,15 +134,14 @@ func MaxHeight(n1, n2 *Node) (maxVal int) {
 
 // RotateLeft is a helper that rotates node positions
 // in a counterclockwise direction
-// TODO add tests
 func RotateLeft(node *Node) *Node {
 	if node == nil || node.right == nil {
 		return node
 	}
 
 	rightNode := node.right
-	rightNode.left = node
 	node.right = rightNode.left
+	rightNode.left = node
 
 	node.height = MaxHeight(node.left, node.right) + 1
 	rightNode.height = MaxHeight(rightNode.left, rightNode.right) + 1
@@ -151,15 +150,14 @@ func RotateLeft(node *Node) *Node {
 
 // RotateRight is a helper that rotates node positions
 // in a clockwise direction
-// TODO add tests
 func RotateRight(node *Node) *Node {
 	if node == nil || node.left == nil {
 		return node
 	}
 
 	leftNode := node.left
-	leftNode.right = node
 	node.left = leftNode.right
+	leftNode.right = node
 
 	node.height = MaxHeight(node.left, node.right) + 1
 	leftNode.height = MaxHeight(leftNode.left, leftNode.right) + 1
