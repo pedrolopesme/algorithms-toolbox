@@ -70,7 +70,7 @@ func Append(node *Node, newNode *Node) *Node {
 		return node
 	}
 
-	node.height = max(node.left.height, node.right.height) + 1
+	node.height = MaxHeight(node.left, node.right) + 1
 
 	// Balancing the tree
 	balance := node.calcBalance()
@@ -114,12 +114,22 @@ func (node Node) calcBalance() int {
 	}
 }
 
-// max return the maximum value between two integers
-func max(a, b int) int {
-	if a > b {
-		return a
+// MaxHeight return the maximum height value between two nodes
+func MaxHeight(n1, n2 *Node) (maxVal int) {
+	if n1 == nil && n2 == nil {
+		maxVal = 0
+	} else if n1 == nil && n2 != nil {
+		maxVal = n2.height
+	} else if n1 != nil && n2 == nil {
+		maxVal = n1.height
+	} else if n1.height > n2.height {
+		maxVal = n1.height
+	} else if n1.height < n2.height {
+		maxVal = n2.height
+	} else {
+		maxVal = n2.height
 	}
-	return b
+	return maxVal
 }
 
 // RotateLeft is a helper that rotates node positions
@@ -134,8 +144,8 @@ func RotateLeft(node *Node) *Node {
 	rightNode.left = node
 	node.right = rightNode.left
 
-	node.height = max(node.left.height, node.right.height) + 1
-	rightNode.height = max(rightNode.left.height, rightNode.right.height) + 1
+	node.height = MaxHeight(node.left, node.right) + 1
+	rightNode.height = MaxHeight(rightNode.left, rightNode.right) + 1
 	return rightNode
 }
 
@@ -151,7 +161,7 @@ func RotateRight(node *Node) *Node {
 	leftNode.right = node
 	node.left = leftNode.right
 
-	node.height = max(node.left.height, node.right.height) + 1
-	leftNode.height = max(leftNode.left.height, leftNode.right.height) + 1
+	node.height = MaxHeight(node.left, node.right) + 1
+	leftNode.height = MaxHeight(leftNode.left, leftNode.right) + 1
 	return leftNode
 }
