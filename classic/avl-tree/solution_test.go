@@ -186,3 +186,43 @@ func TestCalcHeightOnNonEmptyTree(test *testing.T) {
 	tree := &AvlTree{root: &Node{height: 1}}
 	assert.Equal(test, 1, tree.CalcHeight())
 }
+
+func TestGetIdsOnEmptyTree(test *testing.T) {
+	var node *Node
+	var expected []int
+	assert.Equal(test, expected, GetIds(node))
+}
+
+func TestGetIdsWithSingleNode(test *testing.T) {
+	node := &Node{id: 1}
+	expected := []int{1}
+	assert.Equal(test, expected, GetIds(node))
+}
+
+func TestGetIdsWithNodesOnTheLeft(test *testing.T) {
+	node := &Node{
+		id:   1,
+		left: &Node{id: 2, left: &Node{id: 3}},
+	}
+	expected := []int{1, 2, 3}
+	assert.Equal(test, expected, GetIds(node))
+}
+
+func TestGetIdsWithNodesOnTheRight(test *testing.T) {
+	node := &Node{
+		id:    1,
+		right: &Node{id: 2, right: &Node{id: 3}},
+	}
+	expected := []int{1, 2, 3}
+	assert.Equal(test, expected, GetIds(node))
+}
+
+func TestGetIdsWithNodesOnBothSide(test *testing.T) {
+	node := &Node{
+		id:    3,
+		left:  &Node{id: 2, left: &Node{id: 1}},
+		right: &Node{id: 4, right: &Node{id: 5}},
+	}
+	expected := []int{3, 2, 1, 4, 5}
+	assert.Equal(test, expected, GetIds(node))
+}

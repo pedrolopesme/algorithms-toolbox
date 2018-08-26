@@ -16,10 +16,9 @@ type Node struct {
 
 // GetIds is a utility func that
 // visits all nodes and return their ids
-// TODO add tests
-func GetIds(node *Node) []int {
+func GetIds(node *Node) (current []int) {
 	if node != nil {
-		current := []int{node.id}
+		current = []int{node.id}
 
 		left := GetIds(node.left)
 		if left != nil {
@@ -32,7 +31,7 @@ func GetIds(node *Node) []int {
 		}
 		return current
 	}
-	return nil
+	return
 }
 
 // CalcHeight returns tree's height
