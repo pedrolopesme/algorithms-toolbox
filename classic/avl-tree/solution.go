@@ -101,7 +101,6 @@ func (node Node) IsLeaf() bool {
 }
 
 // calcBalance get the balance factor of a node
-// TODO add tests
 func (node Node) calcBalance() int {
 	if node.left == nil && node.right == nil {
 		return 0

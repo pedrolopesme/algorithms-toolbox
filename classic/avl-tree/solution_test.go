@@ -130,3 +130,49 @@ func TestRotateRightWithNodesOnBothSides(test *testing.T) {
 	assert.Nil(test, rotatedNode.left)
 	assert.Nil(test, rotatedNode.right.left)
 }
+
+func TestCalcBalanceWithNoSubNodes(test *testing.T) {
+	node := &Node{
+		id: 1,
+	}
+	balance := node.calcBalance()
+	assert.Equal(test, 0, balance)
+}
+
+func TestCalcBalanceWithNodesOnLeftSide(test *testing.T) {
+	node := &Node{
+		id:   1,
+		left: &Node{id: 2, height: 1},
+	}
+	balance := node.calcBalance()
+	assert.Equal(test, 1, balance)
+}
+
+func TestCalcBalanceWithNodesOnRightSide(test *testing.T) {
+	node := &Node{
+		id:    1,
+		right: &Node{id: 2, height: 1},
+	}
+	balance := node.calcBalance()
+	assert.Equal(test, 1, balance)
+}
+
+func TestCalcBalanceWithNodesOnBothSidesAndTheSameHeight(test *testing.T) {
+	node := &Node{
+		id:    1,
+		left:  &Node{id: 2, height: 1},
+		right: &Node{id: 2, height: 1},
+	}
+	balance := node.calcBalance()
+	assert.Equal(test, 0, balance)
+}
+
+func TestCalcBalanceWithNodesOnBothSidesAndDifferentHeights(test *testing.T) {
+	node := &Node{
+		id:    1,
+		left:  &Node{id: 2, height: 2},
+		right: &Node{id: 2, height: 1},
+	}
+	balance := node.calcBalance()
+	assert.Equal(test, 1, balance)
+}
