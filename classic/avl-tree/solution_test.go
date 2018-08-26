@@ -226,3 +226,73 @@ func TestGetIdsWithNodesOnBothSide(test *testing.T) {
 	expected := []int{3, 2, 1, 4, 5}
 	assert.Equal(test, expected, GetIds(node))
 }
+
+func TestAppendOnNodeWithNodeSubNodes(test *testing.T) {
+	node := &Node{id: 1}
+	newNode := &Node{id: 2}
+	appendNode := Append(node, newNode)
+
+	expected := []int{1, 2}
+	assert.Equal(test, expected, GetIds(appendNode))
+}
+
+func TestAppendToTheRightOnNodeWithNodeLeftSubNodes(test *testing.T) {
+	node := &Node{id: 3, left: &Node{id: 1}}
+	newNode := &Node{id: 5}
+	appendNode := Append(node, newNode)
+
+	expected := []int{3, 1, 5}
+	assert.Equal(test, expected, GetIds(appendNode))
+}
+
+func TestAppendToTheLeftOnNodeWithNodeLeftSubNodes(test *testing.T) {
+	node := &Node{id: 3, left: &Node{id: 2}}
+	newNode := &Node{id: 1}
+	appendNode := Append(node, newNode)
+
+	expected := []int{3, 2, 1}
+	assert.Equal(test, expected, GetIds(appendNode))
+}
+func TestAppendToTheRightOnNodeWithNodeRightSubNodes(test *testing.T) {
+	node := &Node{id: 3, right: &Node{id: 5}}
+	newNode := &Node{id: 7}
+	appendNode := Append(node, newNode)
+
+	expected := []int{3, 5, 7}
+	assert.Equal(test, expected, GetIds(appendNode))
+}
+
+func TestAppendToTheLeftOnNodeWithNodeRightSubNodes(test *testing.T) {
+	node := &Node{id: 3, right: &Node{id: 5}}
+	newNode := &Node{id: 4}
+	appendNode := Append(node, newNode)
+
+	expected := []int{3, 4, 5}
+	assert.Equal(test, expected, GetIds(appendNode))
+}
+
+func TestAppendToTheLeftOnNodeWithNodesOnBothSides(test *testing.T) {
+	node := &Node{
+		id:    3,
+		left:  &Node{id: 2},
+		right: &Node{id: 4},
+	}
+	newNode := &Node{id: 1}
+	appendNode := Append(node, newNode)
+
+	expected := []int{3, 2, 4, 1}
+	assert.Equal(test, expected, GetIds(appendNode))
+}
+
+func TestAppendToTheRightOnNodeWithNodesOnBothSides(test *testing.T) {
+	node := &Node{
+		id:    3,
+		left:  &Node{id: 2},
+		right: &Node{id: 4},
+	}
+	newNode := &Node{id: 5}
+	appendNode := Append(node, newNode)
+
+	expected := []int{3, 2, 5, 4}
+	assert.Equal(test, expected, GetIds(appendNode))
+}

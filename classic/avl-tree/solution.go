@@ -54,7 +54,6 @@ func (tree AvlTree) Insert(newNode *Node) {
 }
 
 // Append appends a node to another node
-// TODO add tests
 func Append(node *Node, newNode *Node) *Node {
 	if node == nil {
 		return newNode
