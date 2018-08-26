@@ -36,7 +36,6 @@ func GetIds(node *Node) []int {
 }
 
 // CalcHeight returns tree's height
-// TODO add tests
 func (tree AvlTree) CalcHeight() int {
 	if tree.root == nil {
 		return 0

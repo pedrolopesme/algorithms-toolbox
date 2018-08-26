@@ -176,3 +176,13 @@ func TestCalcBalanceWithNodesOnBothSidesAndDifferentHeights(test *testing.T) {
 	balance := node.calcBalance()
 	assert.Equal(test, 1, balance)
 }
+
+func TestCalcHeightOnEmptyTree(test *testing.T) {
+	tree := &AvlTree{}
+	assert.Equal(test, 0, tree.CalcHeight())
+}
+
+func TestCalcHeightOnNonEmptyTree(test *testing.T) {
+	tree := &AvlTree{root: &Node{height: 1}}
+	assert.Equal(test, 1, tree.CalcHeight())
+}
