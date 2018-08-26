@@ -129,7 +129,7 @@ func MaxHeight(n1, n2 *Node) (maxVal int) {
 	} else {
 		maxVal = n2.height
 	}
-	return maxVal
+	return
 }
 
 // RotateLeft is a helper that rotates node positions
