@@ -43,7 +43,6 @@ func (tree AvlTree) CalcHeight() int {
 }
 
 // Insert adds a node to a tree
-// TODO add tests
 func (tree *AvlTree) Insert(newNode *Node) {
 	if tree.root == nil {
 		tree.root = newNode
