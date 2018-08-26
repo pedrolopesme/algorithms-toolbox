@@ -296,3 +296,16 @@ func TestAppendToTheRightOnNodeWithNodesOnBothSides(test *testing.T) {
 	expected := []int{3, 2, 5, 4}
 	assert.Equal(test, expected, GetIds(appendNode))
 }
+
+func TestInsertNodeOnEmptyTree(test *testing.T) {
+	tree := &AvlTree{}
+	tree.Insert(&Node{id: 1})
+	assert.Equal(test, 1, tree.root.id)
+}
+
+func TestInsertNodeOnNonEmptyTree(test *testing.T) {
+	tree := &AvlTree{root: &Node{id: 3}}
+	tree.Insert(&Node{id: 1})
+	assert.Equal(test, 3, tree.root.id)
+	assert.Equal(test, 1, tree.root.right.id)
+}
