@@ -316,7 +316,7 @@ func TestInsertNodeOnEmptyTree(test *testing.T) {
 	assert.Equal(test, 30, tree.root.id)
 	assert.Equal(test, 20, tree.root.left.id)
 	assert.Equal(test, 10, tree.root.left.left.id)
-	assert.Equal(test, 10, tree.root.left.right.id)
+	assert.Equal(test, 25, tree.root.left.right.id)
 	assert.Equal(test, 40, tree.root.right.id)
 	assert.Equal(test, 50, tree.root.right.right.id)
 }
