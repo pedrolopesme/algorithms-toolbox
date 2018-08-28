@@ -297,15 +297,44 @@ func TestAppendToTheRightOnNodeWithNodesOnBothSides(test *testing.T) {
 	assert.Equal(test, expected, GetIds(appendNode))
 }
 
+// TODO fix broken test
 func TestInsertNodeOnEmptyTree(test *testing.T) {
-	tree := &AvlTree{}
-	tree.Insert(&Node{id: 1})
-	assert.Equal(test, 1, tree.root.id)
+	tree := AvlTree{}
+	tree.Insert(&Node{id: 10, height: 1})
+	tree.Insert(&Node{id: 20, height: 1})
+	tree.Insert(&Node{id: 30, height: 1})
+	tree.Insert(&Node{id: 40, height: 1})
+	tree.Insert(&Node{id: 50, height: 1})
+	tree.Insert(&Node{id: 25, height: 1})
+
+	// Tree at this point should be:
+	//      30
+	//     /  \
+	//    20  40
+	//   /  \   \
+	//  10  25   50
+	assert.Equal(test, 30, tree.root.id)
+	assert.Equal(test, 20, tree.root.left.id)
+	assert.Equal(test, 10, tree.root.left.left.id)
+	assert.Equal(test, 10, tree.root.left.right.id)
+	assert.Equal(test, 40, tree.root.right.id)
+	assert.Equal(test, 50, tree.root.right.right.id)
 }
 
-func TestInsertNodeOnNonEmptyTree(test *testing.T) {
-	tree := &AvlTree{root: &Node{id: 3}}
+func TestDeleteOnNonEmptyTree(test *testing.T) {
+	tree := &AvlTree{}
+	tree.Insert(&Node{id: 9})
+	tree.Insert(&Node{id: 5})
+	tree.Insert(&Node{id: 10})
+	tree.Insert(&Node{id: 6})
+	tree.Insert(&Node{id: 11})
 	tree.Insert(&Node{id: 1})
-	assert.Equal(test, 3, tree.root.id)
-	assert.Equal(test, 1, tree.root.right.id)
+	tree.Insert(&Node{id: 2})
+
+	treeBefore := GetIds(tree.root)
+	assert.Equal(test, []int{9, 10, 11, 5, 6, 1, 2}, treeBefore)
+
+	DeleteNode(tree.root, 10)
+	treeAfter := GetIds(tree.root)
+	assert.Equal(test, []int{1, 0, -1, 9, 5, 2, 6, 11}, treeAfter)
 }
