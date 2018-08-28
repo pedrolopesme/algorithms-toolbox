@@ -47,7 +47,7 @@ func (tree *AvlTree) Insert(newNode *Node) {
 	if tree.root == nil {
 		tree.root = newNode
 	} else {
-		Append(tree.root, newNode)
+		tree.root = Append(tree.root, newNode)
 	}
 }
 
@@ -57,9 +57,9 @@ func Append(node *Node, newNode *Node) *Node {
 		return newNode
 	}
 
-	if node.id < newNode.id {
+	if node.id > newNode.id {
 		node.left = Append(node.left, newNode)
-	} else if node.id > newNode.id {
+	} else if node.id < newNode.id {
 		node.right = Append(node.right, newNode)
 	} else {
 		return node
@@ -69,6 +69,7 @@ func Append(node *Node, newNode *Node) *Node {
 
 	// Balancing the tree
 	balance := node.calcBalance()
+
 	if balance > 1 && newNode.id < node.left.id {
 		return RotateRight(node)
 	}
@@ -96,34 +97,38 @@ func (node Node) IsLeaf() bool {
 }
 
 // calcBalance get the balance factor of a node
-func (node Node) calcBalance() int {
-	if node.left == nil && node.right == nil {
-		return 0
-	} else if node.left == nil && node.right != nil {
-		return node.right.height
-	} else if node.left != nil && node.right == nil {
-		return node.left.height
-	} else {
-		return node.left.height - node.right.height
+func (node *Node) calcBalance() int {
+	leftHeight := 0
+	rightHeight := 0
+
+	if node.right != nil {
+		rightHeight = node.right.height
 	}
+
+	if node.left != nil {
+		leftHeight = node.left.height
+	}
+
+	return leftHeight - rightHeight
 }
 
 // MaxHeight return the maximum height value between two nodes
-func MaxHeight(n1, n2 *Node) (maxVal int) {
-	if n1 == nil && n2 == nil {
-		maxVal = 0
-	} else if n1 == nil && n2 != nil {
-		maxVal = n2.height
-	} else if n1 != nil && n2 == nil {
-		maxVal = n1.height
-	} else if n1.height > n2.height {
-		maxVal = n1.height
-	} else if n1.height < n2.height {
-		maxVal = n2.height
-	} else {
-		maxVal = n2.height
+func MaxHeight(n1, n2 *Node) int {
+	n1Height := 1
+	n2Height := 1
+
+	if n1 != nil {
+		n1Height = n1.height
 	}
-	return
+
+	if n2 != nil {
+		n2Height = n2.height
+	}
+
+	if n1Height > n2Height {
+		return n1Height
+	}
+	return n2Height
 }
 
 // RotateLeft is a helper that rotates node positions
@@ -156,4 +161,91 @@ func RotateRight(node *Node) *Node {
 	node.height = MaxHeight(node.left, node.right) + 1
 	leftNode.height = MaxHeight(leftNode.left, leftNode.right) + 1
 	return leftNode
+}
+
+// minValueNode returns the node with minimum id
+func minValueNode(node *Node) *Node {
+	current := node
+
+	/* loop down to find the leftmost leaf */
+	for current.left != nil {
+		current = current.left
+	}
+
+	return current
+}
+
+// DeleteNode removes a node from a tree by its ID
+func DeleteNode(root *Node, id int) *Node {
+
+	if root == nil {
+		return root
+	}
+
+	if id < root.id {
+		root.left = DeleteNode(root.left, id)
+	} else if id > root.id {
+		root.right = DeleteNode(root.right, id)
+	} else {
+
+		// node with only one child or no child
+		if (root.left == nil) || (root.right == nil) {
+			var temp *Node
+
+			if temp == root.left {
+				temp = root.right
+			} else {
+				temp = root.left
+			}
+
+			// No child case
+			if temp == nil {
+				temp = root
+				root = nil
+			} else {
+				root = temp
+			}
+		} else {
+			temp := minValueNode(root.right)
+
+			// Copy the inorder successor's data to this node
+			root.id = temp.id
+
+			// Delete the inorder successor
+			root.right = DeleteNode(root.right, temp.id)
+		}
+	}
+
+	// If the tree had only one node then return
+	if root == nil {
+		return root
+	}
+
+	root.height = MaxHeight(root.left, root.right) + 1
+	balance := root.calcBalance()
+
+	// If this node becomes unbalanced, then there are 4 cases
+	// Left Left Case
+	if balance > 1 && root.left.calcBalance() >= 0 {
+		return RotateRight(root)
+	}
+
+	// Left Right Case
+	if balance > 1 && root.left.calcBalance() < 0 {
+		root.left = RotateLeft(root.left)
+		return RotateRight(root)
+	}
+
+	// Right Right Case
+	if balance < -1 && root.right.calcBalance() <= 0 {
+		return RotateLeft(root)
+	}
+
+	// Right Left Case
+	if balance < -1 && root.right.calcBalance() > 0 {
+		root.right = RotateRight(root.right)
+		return RotateLeft(root)
+	}
+
+	return root
 }
