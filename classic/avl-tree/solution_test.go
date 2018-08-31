@@ -154,7 +154,7 @@ func TestCalcBalanceWithNodesOnRightSide(test *testing.T) {
 		right: &Node{id: 2, height: 1},
 	}
 	balance := node.calcBalance()
-	assert.Equal(test, 1, balance)
+	assert.Equal(test, -1, balance)
 }
 
 func TestCalcBalanceWithNodesOnBothSidesAndTheSameHeight(test *testing.T) {
