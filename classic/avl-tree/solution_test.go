@@ -254,7 +254,7 @@ func TestAppendToTheRightOnNodeWithNodeRightSubNodes(test *testing.T) {
 	node := &Node{id: 3, right: &Node{id: 5}}
 	appendNode := Append(node, 7)
 
-	expected := []int{3, 5, 7}
+	expected := []int{5, 3, 7}
 	assert.Equal(test, expected, GetIds(appendNode))
 }
 
