@@ -229,8 +229,7 @@ func TestGetIdsWithNodesOnBothSide(test *testing.T) {
 
 func TestAppendOnNodeWithNodeSubNodes(test *testing.T) {
 	node := &Node{id: 1}
-	newNode := &Node{id: 2}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 2)
 
 	expected := []int{1, 2}
 	assert.Equal(test, expected, GetIds(appendNode))
@@ -238,8 +237,7 @@ func TestAppendOnNodeWithNodeSubNodes(test *testing.T) {
 
 func TestAppendToTheRightOnNodeWithNodeLeftSubNodes(test *testing.T) {
 	node := &Node{id: 3, left: &Node{id: 1}}
-	newNode := &Node{id: 5}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 5)
 
 	expected := []int{3, 1, 5}
 	assert.Equal(test, expected, GetIds(appendNode))
@@ -247,16 +245,14 @@ func TestAppendToTheRightOnNodeWithNodeLeftSubNodes(test *testing.T) {
 
 func TestAppendToTheLeftOnNodeWithNodeLeftSubNodes(test *testing.T) {
 	node := &Node{id: 3, left: &Node{id: 2}}
-	newNode := &Node{id: 1}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 1)
 
 	expected := []int{3, 2, 1}
 	assert.Equal(test, expected, GetIds(appendNode))
 }
 func TestAppendToTheRightOnNodeWithNodeRightSubNodes(test *testing.T) {
 	node := &Node{id: 3, right: &Node{id: 5}}
-	newNode := &Node{id: 7}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 7)
 
 	expected := []int{3, 5, 7}
 	assert.Equal(test, expected, GetIds(appendNode))
@@ -264,8 +260,7 @@ func TestAppendToTheRightOnNodeWithNodeRightSubNodes(test *testing.T) {
 
 func TestAppendToTheLeftOnNodeWithNodeRightSubNodes(test *testing.T) {
 	node := &Node{id: 3, right: &Node{id: 5}}
-	newNode := &Node{id: 4}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 4)
 
 	expected := []int{3, 4, 5}
 	assert.Equal(test, expected, GetIds(appendNode))
@@ -277,8 +272,7 @@ func TestAppendToTheLeftOnNodeWithNodesOnBothSides(test *testing.T) {
 		left:  &Node{id: 2},
 		right: &Node{id: 4},
 	}
-	newNode := &Node{id: 1}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 1)
 
 	expected := []int{3, 2, 4, 1}
 	assert.Equal(test, expected, GetIds(appendNode))
@@ -290,22 +284,20 @@ func TestAppendToTheRightOnNodeWithNodesOnBothSides(test *testing.T) {
 		left:  &Node{id: 2},
 		right: &Node{id: 4},
 	}
-	newNode := &Node{id: 5}
-	appendNode := Append(node, newNode)
+	appendNode := Append(node, 5)
 
 	expected := []int{3, 2, 5, 4}
 	assert.Equal(test, expected, GetIds(appendNode))
 }
 
-// TODO fix broken test
 func TestInsertNodeOnEmptyTree(test *testing.T) {
 	tree := AvlTree{}
-	tree.Insert(&Node{id: 10, height: 1})
-	tree.Insert(&Node{id: 20, height: 1})
-	tree.Insert(&Node{id: 30, height: 1})
-	tree.Insert(&Node{id: 40, height: 1})
-	tree.Insert(&Node{id: 50, height: 1})
-	tree.Insert(&Node{id: 25, height: 1})
+	tree.Insert(10)
+	tree.Insert(20)
+	tree.Insert(30)
+	tree.Insert(40)
+	tree.Insert(50)
+	tree.Insert(25)
 
 	// Tree at this point should be:
 	//      30
@@ -323,13 +315,13 @@ func TestInsertNodeOnEmptyTree(test *testing.T) {
 
 func TestDeleteOnNonEmptyTree(test *testing.T) {
 	tree := &AvlTree{}
-	tree.Insert(&Node{id: 9})
-	tree.Insert(&Node{id: 5})
-	tree.Insert(&Node{id: 10})
-	tree.Insert(&Node{id: 6})
-	tree.Insert(&Node{id: 11})
-	tree.Insert(&Node{id: 1})
-	tree.Insert(&Node{id: 2})
+	tree.Insert(9)
+	tree.Insert(5)
+	tree.Insert(10)
+	tree.Insert(6)
+	tree.Insert(11)
+	tree.Insert(1)
+	tree.Insert(2)
 
 	treeBefore := GetIds(tree.root)
 	assert.Equal(test, []int{9, 10, 11, 5, 6, 1, 2}, treeBefore)

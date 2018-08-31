@@ -43,24 +43,25 @@ func (tree AvlTree) CalcHeight() int {
 }
 
 // Insert adds a node to a tree
-func (tree *AvlTree) Insert(newNode *Node) {
+func (tree *AvlTree) Insert(id int) {
 	if tree.root == nil {
-		tree.root = newNode
+		tree.root = &Node{id: id, height: 1}
 	} else {
-		tree.root = Append(tree.root, newNode)
+		tree.root = Append(tree.root, id)
 	}
 }
 
 // Append appends a node to another node
-func Append(node *Node, newNode *Node) *Node {
+func Append(node *Node, id int) *Node {
 	if node == nil {
-		return newNode
+		return &Node{id: id, height: 1}
 	}
 
-	if node.id > newNode.id {
-		node.left = Append(node.left, newNode)
-	} else if node.id < newNode.id {
-		node.right = Append(node.right, newNode)
+	// Balancing the tree
+	if node.id > id {
+		node.left = Append(node.left, id)
+	} else if node.id < id {
+		node.right = Append(node.right, id)
 	} else {
 		return node
 	}
@@ -70,20 +71,20 @@ func Append(node *Node, newNode *Node) *Node {
 	// Balancing the tree
 	balance := node.calcBalance()
 
-	if balance > 1 && newNode.id < node.left.id {
+	if balance > 1 && node.id < node.left.id {
 		return RotateRight(node)
 	}
 
-	if balance < -1 && newNode.id > node.right.id {
+	if balance < -1 && node.id > node.right.id {
 		return RotateLeft(node)
 	}
 
-	if balance > 1 && newNode.id > node.left.id {
+	if balance > 1 && node.id > node.left.id {
 		node.left = RotateLeft(node.left)
 		return RotateRight(node)
 	}
 
-	if balance < -1 && newNode.id < node.right.id {
+	if balance < -1 && node.id < node.right.id {
 		node.right = RotateRight(node.right)
 		return RotateLeft(node)
 	}
@@ -109,13 +110,15 @@ func (node *Node) calcBalance() int {
 		leftHeight = node.left.height
 	}
 
+	//fmt.Println(node.id, " - ", leftHeight, rightHeight, leftHeight - rightHeight)
+
 	return leftHeight - rightHeight
 }
 
 // MaxHeight return the maximum height value between two nodes
 func MaxHeight(n1, n2 *Node) int {
-	n1Height := 1
-	n2Height := 1
+	n1Height := 0
+	n2Height := 0
 
 	if n1 != nil {
 		n1Height = n1.height
@@ -160,6 +163,7 @@ func RotateRight(node *Node) *Node {
 
 	node.height = MaxHeight(node.left, node.right) + 1
 	leftNode.height = MaxHeight(leftNode.left, leftNode.right) + 1
+
 	return leftNode
 }
 
@@ -177,7 +181,6 @@ func minValueNode(node *Node) *Node {
 
 // DeleteNode removes a node from a tree by its ID
 func DeleteNode(root *Node, id int) *Node {
-
 	if root == nil {
 		return root
 	}
