@@ -274,7 +274,7 @@ func TestAppendToTheLeftOnNodeWithNodesOnBothSides(test *testing.T) {
 	}
 	appendNode := Append(node, 1)
 
-	expected := []int{3, 2, 4, 1}
+	expected := []int{2, 1, 3, 4}
 	assert.Equal(test, expected, GetIds(appendNode))
 }
 
