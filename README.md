@@ -25,6 +25,7 @@ Implementations of classic algorithm challenges
 | algorithm | link | 
 |---|---|
 | AVL Tree | [solution](classic/avl-tree) |
+| Binary Search Tree| [solution](classic/bst) |
 | Breath-first search (BFS) | [solution](classic/bfs) |
 | Depth-first search (DFS) | [solution](classic/dfs) |
 | Splay Tree |  [solution](classic/splay-tree) |
