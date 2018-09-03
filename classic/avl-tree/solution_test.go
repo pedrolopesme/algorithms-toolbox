@@ -317,21 +317,67 @@ func TestInsertNodeOnEmptyTree(test *testing.T) {
 	assert.Equal(test, 50, tree.root.right.right.id)
 }
 
-// TODO fix test
-func TestDeleteOnNonEmptyTree(test *testing.T) {
+func TestDeleteNodesOnTheLeftSide(test *testing.T) {
 	tree := &AvlTree{}
-	tree.Insert(9)
-	tree.Insert(5)
-	tree.Insert(10)
-	tree.Insert(6)
-	tree.Insert(11)
-	tree.Insert(1)
+	tree.Insert(3)
 	tree.Insert(2)
+	tree.Insert(4)
+	tree.Insert(1)
+	tree.Insert(5)
 
 	treeBefore := GetIds(tree.root)
-	assert.Equal(test, []int{9, 10, 11, 5, 6, 1, 2}, treeBefore)
+	assert.Equal(test, []int{3, 2, 1, 4, 5}, treeBefore)
 
-	DeleteNode(tree.root, 10)
+	DeleteNode(tree.root, 2)
 	treeAfter := GetIds(tree.root)
-	assert.Equal(test, []int{1, 0, -1, 9, 5, 2, 6, 11}, treeAfter)
+	assert.Equal(test, []int{3, 1, 4, 5}, treeAfter)
+}
+
+func TestDeleteSubNodesOnTheLeftSide(test *testing.T) {
+	tree := &AvlTree{}
+	tree.Insert(5)
+	tree.Insert(2)
+	tree.Insert(6)
+	tree.Insert(1)
+	tree.Insert(3)
+
+	treeBefore := GetIds(tree.root)
+	assert.Equal(test, []int{5, 2, 1, 3, 6}, treeBefore)
+
+	DeleteNode(tree.root, 3)
+	treeAfter := GetIds(tree.root)
+	assert.Equal(test, []int{5, 2, 1, 6}, treeAfter)
+}
+
+
+func TestDeleteNodesOnTheRightSide(test *testing.T) {
+	tree := &AvlTree{}
+	tree.Insert(3)
+	tree.Insert(2)
+	tree.Insert(4)
+	tree.Insert(1)
+	tree.Insert(5)
+
+	treeBefore := GetIds(tree.root)
+	assert.Equal(test, []int{3, 2, 1, 4, 5}, treeBefore)
+
+	DeleteNode(tree.root, 4)
+	treeAfter := GetIds(tree.root)
+	assert.Equal(test, []int{3, 2, 1, 5}, treeAfter)
+}
+
+func TestDeleteSubNodesOnTheRightSide(test *testing.T) {
+	tree := &AvlTree{}
+	tree.Insert(3)
+	tree.Insert(2)
+	tree.Insert(4)
+	tree.Insert(5)
+	tree.Insert(6)
+
+	treeBefore := GetIds(tree.root)
+	assert.Equal(test, []int{3, 2, 5, 4, 6}, treeBefore)
+
+	DeleteNode(tree.root, 4)
+	treeAfter := GetIds(tree.root)
+	assert.Equal(test, []int{3, 2, 5, 6}, treeAfter)
 }
