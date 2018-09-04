@@ -5,6 +5,13 @@ type Tree struct {
 	root *Node
 }
 
+// BST specifies a Binary Search Tree
+type BST interface {
+	Search(id int) *Node
+	Insert(id int)
+	Delete(id int)
+}
+
 // Node definition used throughout the code.
 type Node struct {
 	id    int
@@ -68,4 +75,44 @@ func Insert(root *Node, id int) *Node {
 	}
 
 	return root
+}
+
+// Delete removes a node from the tree
+func (tree *Tree) Delete(id int) {
+	tree.root = Delete(tree.root, id)
+}
+
+// TODO add tests
+func Delete(root *Node, id int) *Node {
+	if root == nil {
+		return root
+	}
+
+	if id < root.id {
+		root.left = Delete(root.left, id)
+	} else if id > root.id {
+		root.right = Delete(root.right, id)
+	} else {
+		if root.left == nil {
+			return root.right
+		} else if root.right == nil {
+			return root.left
+		}
+
+		root.id = minValue(root.right)
+		root.right = Delete(root.right, root.id)
+	}
+
+	return root
+}
+
+// minValueNode returns the minimum value of a tree
+// TODO add tests
+func minValue(root *Node) int {
+	minValue := root.id
+	for root.left != nil {
+		minValue = root.left.id
+		root = root.left
+	}
+	return minValue
 }
