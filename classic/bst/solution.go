@@ -30,27 +30,6 @@ func (t Tree) Search(id int) *Node {
 	return nil
 }
 
-// GetIds is a utility func that
-// visits all nodes and return their ids
-// TODO add tests
-func GetIds(node *Node) (current []int) {
-	if node != nil {
-		current = []int{node.id}
-
-		left := GetIds(node.left)
-		if left != nil {
-			current = append(current, left...)
-		}
-
-		right := GetIds(node.right)
-		if right != nil {
-			current = append(current, right...)
-		}
-		return current
-	}
-	return
-}
-
 // Insert adds a node direct to a tree
 func (tree *Tree) Insert(id int) {
 	if tree.root == nil {
@@ -58,6 +37,11 @@ func (tree *Tree) Insert(id int) {
 	} else {
 		tree.root = Insert(tree.root, id)
 	}
+}
+
+// Delete removes a node from the tree
+func (tree *Tree) Delete(id int) {
+	tree.root = Delete(tree.root, id)
 }
 
 // Insert adds a node to a tree
@@ -75,11 +59,6 @@ func Insert(root *Node, id int) *Node {
 	}
 
 	return root
-}
-
-// Delete removes a node from the tree
-func (tree *Tree) Delete(id int) {
-	tree.root = Delete(tree.root, id)
 }
 
 // TODO add tests
@@ -115,4 +94,39 @@ func minValue(root *Node) int {
 		root = root.left
 	}
 	return minValue
+}
+
+// Insert adds a node to a tree
+// TODO add tests
+func Search(root *Node, id int) *Node {
+	if root == nil || root.id == id {
+		return root
+	}
+
+	if id < root.id {
+		return Search(root.left, id)
+	}
+
+	return Search(root.right, id)
+}
+
+// GetIds is a utility func that
+// visits all nodes and return their ids
+// TODO add tests
+func GetIds(node *Node) (current []int) {
+	if node != nil {
+		current = []int{node.id}
+
+		left := GetIds(node.left)
+		if left != nil {
+			current = append(current, left...)
+		}
+
+		right := GetIds(node.right)
+		if right != nil {
+			current = append(current, right...)
+		}
+		return current
+	}
+	return
 }
