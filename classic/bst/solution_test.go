@@ -112,3 +112,39 @@ func TestSearchWhenNodeDoesntExist(test *testing.T) {
 	node := tree.Search(10)
 	assert.Nil(test, node)
 }
+
+func TestDeleteNodesOnTheLeft(test *testing.T) {
+	tree := Tree{}
+	tree.Insert(5)
+	tree.Insert(6)
+	tree.Insert(7)
+	tree.Insert(4)
+	tree.Insert(3)
+	assert.Equal(test, 5, tree.root.id)
+	assert.Equal(test, 6, tree.root.right.id)
+	assert.Equal(test, 7, tree.root.right.right.id)
+	assert.Equal(test, 4, tree.root.left.id)
+	assert.Equal(test, 3, tree.root.left.left.id)
+
+	assert.Equal(test, 4, tree.root.left.id)
+	tree.Delete(4)
+	assert.Equal(test, 3, tree.root.left.id)
+}
+
+func TestDeleteNodesOnTheRight(test *testing.T) {
+	tree := Tree{}
+	tree.Insert(5)
+	tree.Insert(6)
+	tree.Insert(7)
+	tree.Insert(4)
+	tree.Insert(3)
+	assert.Equal(test, 5, tree.root.id)
+	assert.Equal(test, 6, tree.root.right.id)
+	assert.Equal(test, 7, tree.root.right.right.id)
+	assert.Equal(test, 4, tree.root.left.id)
+	assert.Equal(test, 3, tree.root.left.left.id)
+
+	assert.Equal(test, 6, tree.root.right.id)
+	tree.Delete(6)
+	assert.Equal(test, 7, tree.root.right.id)
+}

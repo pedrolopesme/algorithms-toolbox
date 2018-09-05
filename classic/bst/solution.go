@@ -59,7 +59,6 @@ func Insert(root *Node, id int) *Node {
 	return root
 }
 
-// TODO add tests
 func Delete(root *Node, id int) *Node {
 	if root == nil {
 		return root
