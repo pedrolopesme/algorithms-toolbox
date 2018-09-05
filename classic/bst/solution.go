@@ -25,8 +25,8 @@ func NewNode(id int) *Node {
 }
 
 // Search tries to find a node by its key
-func (t Tree) Search(id int) *Node {
-	return Search(t.root, id)
+func (tree Tree) Search(id int) *Node {
+	return Search(tree.root, id)
 }
 
 // Insert adds a node direct to a tree
