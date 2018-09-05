@@ -61,3 +61,54 @@ func TestNodeInsertAddingNodesToBothSides(test *testing.T) {
 	assert.Equal(test, 4, tree.root.left.id)
 	assert.Equal(test, 3, tree.root.left.left.id)
 }
+
+func TestSearchWhenNodeExistsOnTheLeft(test *testing.T) {
+	tree := Tree{}
+	tree.Insert(5)
+	tree.Insert(6)
+	tree.Insert(7)
+	tree.Insert(4)
+	tree.Insert(3)
+	assert.Equal(test, 5, tree.root.id)
+	assert.Equal(test, 6, tree.root.right.id)
+	assert.Equal(test, 7, tree.root.right.right.id)
+	assert.Equal(test, 4, tree.root.left.id)
+	assert.Equal(test, 3, tree.root.left.left.id)
+
+	node := tree.Search(3)
+	assert.Equal(test, 3, node.id)
+}
+
+func TestSearchWhenNodeExistsOnTheRight(test *testing.T) {
+	tree := Tree{}
+	tree.Insert(5)
+	tree.Insert(6)
+	tree.Insert(7)
+	tree.Insert(4)
+	tree.Insert(3)
+	assert.Equal(test, 5, tree.root.id)
+	assert.Equal(test, 6, tree.root.right.id)
+	assert.Equal(test, 7, tree.root.right.right.id)
+	assert.Equal(test, 4, tree.root.left.id)
+	assert.Equal(test, 3, tree.root.left.left.id)
+
+	node := tree.Search(7)
+	assert.Equal(test, 7, node.id)
+}
+
+func TestSearchWhenNodeDoesntExist(test *testing.T) {
+	tree := Tree{}
+	tree.Insert(5)
+	tree.Insert(6)
+	tree.Insert(7)
+	tree.Insert(4)
+	tree.Insert(3)
+	assert.Equal(test, 5, tree.root.id)
+	assert.Equal(test, 6, tree.root.right.id)
+	assert.Equal(test, 7, tree.root.right.right.id)
+	assert.Equal(test, 4, tree.root.left.id)
+	assert.Equal(test, 3, tree.root.left.left.id)
+
+	node := tree.Search(10)
+	assert.Nil(test, node)
+}

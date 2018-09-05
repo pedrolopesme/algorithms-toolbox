@@ -25,9 +25,8 @@ func NewNode(id int) *Node {
 }
 
 // Search tries to find a node by its key
-// TODO implement and add tests
 func (t Tree) Search(id int) *Node {
-	return nil
+	return Search(t.root, id)
 }
 
 // Insert adds a node direct to a tree
@@ -95,7 +94,6 @@ func minValue(root *Node) int {
 }
 
 // Insert adds a node to a tree
-// TODO add tests
 func Search(root *Node, id int) *Node {
 	if root == nil || root.id == id {
 		return root
@@ -106,25 +104,4 @@ func Search(root *Node, id int) *Node {
 	}
 
 	return Search(root.right, id)
-}
-
-// GetIds is a utility func that
-// visits all nodes and return their ids
-// TODO add tests
-func GetIds(node *Node) (current []int) {
-	if node != nil {
-		current = []int{node.id}
-
-		left := GetIds(node.left)
-		if left != nil {
-			current = append(current, left...)
-		}
-
-		right := GetIds(node.right)
-		if right != nil {
-			current = append(current, right...)
-		}
-		return current
-	}
-	return
 }
