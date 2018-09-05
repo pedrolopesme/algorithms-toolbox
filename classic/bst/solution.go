@@ -45,7 +45,6 @@ func (tree *Tree) Delete(id int) {
 }
 
 // Insert adds a node to a tree
-// TODO add tests
 func Insert(root *Node, id int) *Node {
 	if root == nil {
 		root = NewNode(id)
@@ -86,7 +85,6 @@ func Delete(root *Node, id int) *Node {
 }
 
 // minValueNode returns the minimum value of a tree
-// TODO add tests
 func minValue(root *Node) int {
 	minValue := root.id
 	for root.left != nil {
