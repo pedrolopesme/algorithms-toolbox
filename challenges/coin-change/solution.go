@@ -1,9 +1,11 @@
-package main
+package coin_change
 
 import "log"
 
-// Solution for the String Reversing problem. This
-// solution only iterates through half of the string to get its reversed
-func Solution(val []byte) []byte {
+// Solution for the Coins Change problem, where
+// 	- 	coins 	: coins used to compose the change, value -> available qtt
+// 	- 	val 	: value to be calculated
+func Solution(coins map[int]int, val float32) (result map[int]int) {
 	log.Fatal("Needs implementation")
+	return
 }
