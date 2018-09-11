@@ -12,10 +12,10 @@ You'll receive a float value V, where 0 <= V <= 2^32
 Ex:  The number of coins need for the change, followed by 
 a list of its values:
 
-total of coins: 5 
 2 coins of 50
 1 coins of 25
 2 coins of 1
+change: 1.27, coins: 5
 
 
 ### Makefile
