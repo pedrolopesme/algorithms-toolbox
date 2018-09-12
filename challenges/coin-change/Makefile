@@ -4,7 +4,7 @@ GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 GOFMT=$(GOCMD)fmt
-BINARY_NAME=$(GOPATH)/bin/string-reversing
+BINARY_NAME=$(GOPATH)/bin/coin-change
 BINARY_UNIX=$(BINARY_NAME)_unix
 
 build: 
