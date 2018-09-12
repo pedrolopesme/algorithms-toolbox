@@ -25,9 +25,10 @@ func Solution(coins map[int]int, val float64) (result map[int]int) {
 	}
 
 	result = make(map[int]int)
-	intVal := int(val * 100)
+	rest := int(val * 100)
+	neededCoins := 0
 	for coin, availableCoins := range coins {
-		rest, neededCoins := calculateCoins(coin, availableCoins, intVal)
+		rest, neededCoins = calculateCoins(coin, availableCoins, rest)
 		if neededCoins > 0 {
 			result[coin] = neededCoins
 		}
