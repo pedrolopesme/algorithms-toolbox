@@ -1,4 +1,4 @@
-package coin_change
+package main
 
 // Solution for the Coins Change problem, where
 // 	- 	coin 			: coin value
@@ -20,6 +20,11 @@ func calculateCoins(coin int, availableCoins int, val int) (rest int, neededCoin
 // 	result:
 //		map containing a list of coins -> needed quantity
 func Solution(coins map[int]int, val float64) (result map[int]int) {
+	if val <= 0 {
+		return
+	}
+
+	result = make(map[int]int)
 	intVal := int(val * 100)
 	for coin, availableCoins := range coins {
 		rest, neededCoins := calculateCoins(coin, availableCoins, intVal)
