@@ -22,7 +22,7 @@ func main() {
 		log.Fatal("It was impossible to convert ", valueReceived, " to float")
 	}
 
-	change := valueToBeCharged - valueReceived
+	change := (valueToBeCharged - valueReceived) * -1
 	changeCoins := Solution(coins, change)
 
 	var totalCoins int
