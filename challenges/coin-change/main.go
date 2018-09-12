@@ -1,4 +1,4 @@
-package coin_change
+package main
 
 import (
 	"fmt"
@@ -14,11 +14,11 @@ func main() {
 
 	var valueToBeCharged, valueReceived float64
 	var err error
-	if valueToBeCharged, err = strconv.ParseFloat(os.Args[0], 64); err != nil {
+	if valueToBeCharged, err = strconv.ParseFloat(os.Args[1], 64); err != nil {
 		log.Fatal("It was impossible to convert ", valueToBeCharged, " to float")
 	}
 
-	if valueReceived, err = strconv.ParseFloat(os.Args[0], 64); err != nil {
+	if valueReceived, err = strconv.ParseFloat(os.Args[2], 64); err != nil {
 		log.Fatal("It was impossible to convert ", valueReceived, " to float")
 	}
 
