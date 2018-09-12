@@ -34,5 +34,5 @@ func main() {
 		totalChange += float64((coin * qtt) / 100)
 		totalCoins++
 	}
-	fmt.Println("change:", totalChange, ", coins:", 5)
+	fmt.Println("change:", totalChange, ", coins:", totalCoins)
 }
