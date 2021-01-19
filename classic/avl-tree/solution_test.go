@@ -1,8 +1,8 @@
 package main
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestMaxHeightWithTwoNilNodes(test *testing.T) {
@@ -201,9 +201,9 @@ func TestGetIdsWithSingleNode(test *testing.T) {
 
 func TestGetIdsWithNodesOnTheLeft(test *testing.T) {
 	node := &Node{
-		id:   1,
-		height:3,
-		left: &Node{id: 2, height:2, left: &Node{id: 3, height:1}},
+		id:     1,
+		height: 3,
+		left:   &Node{id: 2, height: 2, left: &Node{id: 3, height: 1}},
 	}
 	expected := []int{1, 2, 3}
 	assert.Equal(test, expected, GetIds(node))
@@ -211,9 +211,9 @@ func TestGetIdsWithNodesOnTheLeft(test *testing.T) {
 
 func TestGetIdsWithNodesOnTheRight(test *testing.T) {
 	node := &Node{
-		id:    1,
-		height:3,
-		right: &Node{id: 2, height:2, right: &Node{id: 3, height:1}},
+		id:     1,
+		height: 3,
+		right:  &Node{id: 2, height: 2, right: &Node{id: 3, height: 1}},
 	}
 	expected := []int{1, 2, 3}
 	assert.Equal(test, expected, GetIds(node))
@@ -221,10 +221,10 @@ func TestGetIdsWithNodesOnTheRight(test *testing.T) {
 
 func TestGetIdsWithNodesOnBothSide(test *testing.T) {
 	node := &Node{
-		id:    3,
-		height:2,
-		left:  &Node{id: 2, left: &Node{id: 1, height:1}},
-		right: &Node{id: 4, right: &Node{id: 5, height:1}},
+		id:     3,
+		height: 2,
+		left:   &Node{id: 2, left: &Node{id: 1, height: 1}},
+		right:  &Node{id: 4, right: &Node{id: 5, height: 1}},
 	}
 	expected := []int{3, 2, 1, 4, 5}
 	assert.Equal(test, expected, GetIds(node))
@@ -239,7 +239,7 @@ func TestAppendOnNodeWithNodeSubNodes(test *testing.T) {
 }
 
 func TestAppendToTheRightOnNodeWithNodeLeftSubNodes(test *testing.T) {
-	node := &Node{id: 3, height:2, left: &Node{id: 1, height: 1}}
+	node := &Node{id: 3, height: 2, left: &Node{id: 1, height: 1}}
 	appendNode := Append(node, 5)
 
 	expected := []int{3, 1, 5}
@@ -247,14 +247,14 @@ func TestAppendToTheRightOnNodeWithNodeLeftSubNodes(test *testing.T) {
 }
 
 func TestAppendToTheLeftOnNodeWithNodeLeftSubNodes(test *testing.T) {
-	node := &Node{id: 3, height:2, left: &Node{id: 2, height: 1}}
+	node := &Node{id: 3, height: 2, left: &Node{id: 2, height: 1}}
 	appendNode := Append(node, 1)
 
 	expected := []int{2, 1, 3}
 	assert.Equal(test, expected, GetIds(appendNode))
 }
 func TestAppendToTheRightOnNodeWithNodeRightSubNodes(test *testing.T) {
-	node := &Node{id: 3, height:2, right: &Node{id: 5, height: 1}}
+	node := &Node{id: 3, height: 2, right: &Node{id: 5, height: 1}}
 	appendNode := Append(node, 7)
 
 	expected := []int{5, 3, 7}
@@ -262,7 +262,7 @@ func TestAppendToTheRightOnNodeWithNodeRightSubNodes(test *testing.T) {
 }
 
 func TestAppendToTheLeftOnNodeWithNodeRightSubNodes(test *testing.T) {
-	node := &Node{id: 3, height:2, right: &Node{id: 5, height: 1}}
+	node := &Node{id: 3, height: 2, right: &Node{id: 5, height: 1}}
 	appendNode := Append(node, 4)
 
 	expected := []int{4, 3, 5}
@@ -271,10 +271,10 @@ func TestAppendToTheLeftOnNodeWithNodeRightSubNodes(test *testing.T) {
 
 func TestAppendToTheLeftOnNodeWithNodesOnBothSides(test *testing.T) {
 	node := &Node{
-		id:    3,
+		id:     3,
 		height: 2,
-		left:  &Node{id: 2, height: 1},
-		right: &Node{id: 4, height: 1},
+		left:   &Node{id: 2, height: 1},
+		right:  &Node{id: 4, height: 1},
 	}
 	appendNode := Append(node, 1)
 
@@ -284,10 +284,10 @@ func TestAppendToTheLeftOnNodeWithNodesOnBothSides(test *testing.T) {
 
 func TestAppendToTheRightOnNodeWithNodesOnBothSides(test *testing.T) {
 	node := &Node{
-		id:    3,
+		id:     3,
 		height: 2,
-		left:  &Node{id: 2, height: 1},
-		right: &Node{id: 4, height: 1},
+		left:   &Node{id: 2, height: 1},
+		right:  &Node{id: 4, height: 1},
 	}
 	appendNode := Append(node, 5)
 	expected := []int{3, 2, 4, 5}
@@ -348,7 +348,6 @@ func TestDeleteSubNodesOnTheLeftSide(test *testing.T) {
 	treeAfter := GetIds(tree.root)
 	assert.Equal(test, []int{5, 2, 1, 6}, treeAfter)
 }
-
 
 func TestDeleteNodesOnTheRightSide(test *testing.T) {
 	tree := &AvlTree{}
