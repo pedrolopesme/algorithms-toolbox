@@ -1,0 +1,8 @@
+package main
+
+import "testing"
+
+func TestFindFirstRecurrying_WhenNoRepetionWasFound_ReturnNegativeOne(t *testing.T) {
+	arr := []int{1, 2, 3, 4, 5}
+	assert.Equal(t, -1, FindFirstRecurrying(arr))
+}
