@@ -7,12 +7,14 @@ type Node struct {
 
 type List struct {
 	head *Node
+	tail *Node
 	size int
 }
 
 func (l *List) Prepend(n *Node) {
 	if l.size == 0 {
 		l.head = n
+		l.tail = n
 	} else {
 		n.next = l.head
 		l.head = n
@@ -23,12 +25,10 @@ func (l *List) Prepend(n *Node) {
 func (l *List) Append(n *Node) {
 	if l.size == 0 {
 		l.head = n
+		l.tail = n
 	} else {
-		iNode := l.head
-		for iNode.next != nil {
-			iNode = iNode.next
-		}
-		iNode.next = n
+		l.tail.next = n
+		l.tail = n
 	}
 	l.size++
 }
