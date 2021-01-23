@@ -33,6 +33,33 @@ func (l *List) Append(n *Node) {
 	l.size++
 }
 
+func (l *List) Insert(pos int, n *Node) {
+	// Dealing with insertion into the head
+	if pos == 0 {
+		l.Prepend(n)
+		return
+	}
+
+	// Dealing with insertion into the tail
+	if l.size <= pos {
+		l.Append(n)
+		return
+	}
+
+	// Dealing with insertion in the middle
+	iPos := 0
+	iNode := l.head
+	var prevNode *Node
+	for iPos != pos {
+		iPos++
+		prevNode = iNode
+		iNode = iNode.next
+	}
+	prevNode.next = n
+	n.next = iNode
+	l.size++
+}
+
 func main() {
 	// silence is gold
 }
