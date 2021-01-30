@@ -17,6 +17,18 @@ func (f *Fibo) CalculateIterative(index int) int {
 	return arrFibo[len(arrFibo)-1]
 }
 
+func (f *Fibo) CalculateRecursive(index int) int {
+	if index == 0 {
+		return 0
+	}
+
+	if index == 1 {
+		return 1
+	}
+
+	return f.CalculateRecursive(index-2) + f.CalculateRecursive(index-1)
+}
+
 func main() {
 
 }
