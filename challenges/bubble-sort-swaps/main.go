@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 	"strconv"
@@ -10,7 +11,25 @@ import (
 
 // Complete the countSwaps function below.
 // challenge: https://www.hackerrank.com/challenges/ctci-bubble-sort/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=sorting
-func countSwaps(a []int32) (swaps, first, last int32) {
+func countSwaps(arr []int32) (swaps, first, last int32) {
+	sorted := false
+	for !sorted {
+		sorted = true
+		for i := 0; i < len(arr); i++ {
+			if i+1 < len(arr) { // check if we've reached the end of the array
+				if arr[i] > arr[i+1] {
+					swaps++
+					temp := arr[i]
+					arr[i] = arr[i+1]
+					arr[i+1] = temp
+					sorted = false
+				}
+			}
+		}
+	}
+	first = arr[0]
+	last = arr[len(arr)-1]
+	fmt.Printf("Array is sorted in %d swaps.\nFirst Element: %d\nLast Element: %d", swaps, first, last)
 	return
 }
 

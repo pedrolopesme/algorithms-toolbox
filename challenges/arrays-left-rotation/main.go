@@ -22,6 +22,23 @@ func rotLeft(a []int32, d int32) []int32 {
 		return a
 	}
 
+	tempArr := a[d:]
+	return append(tempArr, a[:d]...)
+}
+
+// Complete the rotLeft function below.
+func rotLeftFirstImpl(a []int32, d int32) []int32 {
+	// single element array
+	if len(a) == 1 {
+		return a
+	}
+
+	// number of rotations equals to the size
+	// of the array means no roation
+	if int32(len(a)) == d {
+		return a
+	}
+
 	for d > 0 {
 		d--
 		first := a[0]
