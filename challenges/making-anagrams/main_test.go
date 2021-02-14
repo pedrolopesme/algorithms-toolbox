@@ -11,5 +11,5 @@ func TestMakeAnagram_WhenSmiliarStringsAreGiven_ThenThereIsNoChanges(t *testing.
 }
 
 func TestMakeAnagram_WhenDifferentStringsWereGiven_ThenThereIsNoChanges(t *testing.T) {
-	assert.Equal(t, int32(4), makeAnagram("cde", "abc"))
+	assert.Equal(t, int32(4), makeAnagram("cde", "abc1"))
 }
