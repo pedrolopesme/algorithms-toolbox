@@ -5,44 +5,25 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
 
-func findMinValue(prices []int32, greaterThan int32) (minValue int32) {
-	gotFirst := false
-	for i := 0; i < len(prices); i++ {
-		currValue := prices[i]
-		if currValue <= greaterThan {
-			continue
-		}
-		if !gotFirst {
-			minValue = currValue
-			gotFirst = true
-			continue
-		}
-
-		if currValue < minValue {
-			minValue = currValue
-		}
-	}
-	return
-}
-
 // Complete the maximumToys function below.
 // source https://www.hackerrank.com/challenges/mark-and-toys/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=sort
 func maximumToys(prices []int32, k int32) (maxToys int32) {
-	lastValue := int32(0)
-	for k >= 0 {
-		lastValue = findMinValue(prices, lastValue)
-		k -= lastValue
-		if k >= 0 {
-			maxToys++
+	sum := int32(0)
+	sort.Slice(prices, func(i, j int) bool { return prices[i] < prices[j] })
+	for i := 0; i < len(prices); i++ {
+		sum += prices[i]
+		if sum > k {
+			break
 		} else {
-			return
+			maxToys++
 		}
 	}
-	return
+	return maxToys
 }
 
 func main() {
