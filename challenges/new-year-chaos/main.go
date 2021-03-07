@@ -10,32 +10,69 @@ import (
 )
 
 // Complete the minimumBribes function below.
-// https://www.hackerrank.com/challenges/new-year-chaos/problem
-func minimumBribes(q []int32) (result int32) {
-	// map containing the briber number and its
-	// original position
-	bribers := make(map[int32]int)
+// source: https://www.hackerrank.com/challenges/new-year-chaos/problem
+// returns the number of bribes or -1 if a too chaotic condition
+// was found
+func minimumBribes(q []int32) int32 {
 
-	for i := len(q) - 1; i >= 0; i-- {
-		expectedBriber := int32(i + 1)
-		if q[i] != expectedBriber {
-			// if the briber was identified
-			if originalPosition, ok := bribers[q[i]]; ok {
-				// try to identify chaotic briber
-				if originalPosition-i >= 3 {
-					fmt.Print("Too chaotic")
-					result = int32(-1)
-					break
-				} else {
-					result += int32(originalPosition - i)
-				}
+	// this map holds the people that were
+	// shifted (or accepted a bribe). This is used to detect the reason
+	// behind a person is out of its expected position: is that person
+	// a briber or just someone that took a bribe?
+	shiftedPeople := make(map[int32]bool)
+
+	totalBribes := int32(0)
+
+	maxAllowedBribes := int32(2)
+
+	for i := int32(0); i < int32(len(q)); i++ {
+		expectedPerson := (i + 1)
+		actualPerson := q[i]
+
+		// try to confirm if we've a problem with current person position
+		if expectedPerson != actualPerson {
+
+			// if we know the the current person is out of its position
+			// because it had accepted a bribe, we won't count him/her
+			// as a briber ...
+			if _, ok := shiftedPeople[actualPerson]; ok {
+				delete(shiftedPeople, actualPerson)
+				continue
 			} else {
-				bribers[q[i]] = i
+				// we found a briber! Now, how many positions
+				// him/her have bought?
+				bribesCounter := abs(actualPerson - expectedPerson)
+
+				// check too chaotic situations
+				if bribesCounter > maxAllowedBribes {
+					fmt.Println("Too chaotic")
+					return int32(-1)
+				}
+
+				// counting total bribes
+				totalBribes += bribesCounter
+
+				// storing the expected person (we gone meet him/her
+				// out of its position in one of further positions)
+				shiftedPeople[expectedPerson] = true
+				if bribesCounter > 1 {
+					// if the briber has bought more than one position
+					// we gonna find the person after the next person
+					// (I know, I'm just counting with up to two bribings right now)
+					shiftedPeople[expectedPerson+1] = true
+				}
 			}
 		}
 	}
 
-	return
+	return totalBribes
+}
+
+func abs(a int32) int32 {
+	if a < 0 {
+		return a * -1
+	}
+	return a
 }
 
 func main() {
