@@ -13,7 +13,7 @@ import (
 // source: https://www.hackerrank.com/challenges/new-year-chaos/problem
 // returns the number of bribes or -1 if a too chaotic condition
 // was found
-func minimumBribes(q []int32) int32 {
+func minimumBribes2(q []int32) int32 {
 
 	// this map holds the people that were
 	// shifted (or accepted a bribe). This is used to detect the reason
@@ -65,6 +65,7 @@ func minimumBribes(q []int32) int32 {
 		}
 	}
 
+	fmt.Println(totalBribes)
 	return totalBribes
 }
 
@@ -73,6 +74,37 @@ func abs(a int32) int32 {
 		return a * -1
 	}
 	return a
+}
+
+func minimumBribes(q []int32) int32 {
+
+	totalBribes := int32(0)
+	next := int32(1)
+	nextNext := int32(2)
+	nextNextNext := int32(3)
+
+	for i := int32(0); i < int32(len(q)); i++ {
+
+		if q[i] == next {
+			// natural order, just keep moving
+			next = nextNext
+			nextNext = nextNextNext
+			nextNextNext++
+		} else if q[i] == nextNext {
+			// we found a briber that step up one position
+			totalBribes++
+			nextNext = nextNextNext
+			nextNextNext++
+		} else if q[i] == nextNextNext {
+			totalBribes += 2
+			nextNextNext++
+		} else {
+			fmt.Println("Too chaotic")
+			return int32(-1)
+		}
+	}
+	fmt.Println(totalBribes)
+	return totalBribes
 }
 
 func main() {
