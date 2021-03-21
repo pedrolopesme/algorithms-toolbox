@@ -12,7 +12,16 @@ import (
 // Complete the alternatingCharacters function below.
 // source: https://www.hackerrank.com/challenges/alternating-characters/problem
 func alternatingCharacters(s string) int32 {
-	return int32(0)
+	lastChar := ' '
+	deletions := int32(0)
+	for i := 0; i < len(s); i++ {
+		if lastChar == rune(s[i]) {
+			deletions++
+		}
+		lastChar = rune(s[i])
+	}
+
+	return deletions
 }
 
 func main() {
