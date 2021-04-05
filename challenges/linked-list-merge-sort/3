@@ -1,0 +1,11 @@
+package main
+
+import "testing"
+
+func TestMergeSort_BaseCases(t *testing.T) {
+	l := List{}
+	l.Add(&Node{val: 1})
+	l.Add(&Node{val: 2})
+	l.Add(&Node{val: 3})
+	assert.Equal(t, 3, l.head.val)
+}
