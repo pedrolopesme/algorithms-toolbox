@@ -17,7 +17,6 @@ func arrayManipulation(n int32, queries [][]int32) int64 {
 	for i := 0; i < len(queries); i++ {
 		for j := queries[i][0] - 1; j < queries[i][1]; j++ {
 			arr[j] += int64(queries[i][2])
-
 			if maxElement < arr[j] {
 				maxElement = arr[j]
 			}
