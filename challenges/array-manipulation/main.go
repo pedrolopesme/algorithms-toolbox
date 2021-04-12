@@ -11,7 +11,7 @@ import (
 
 // Complete the arrayManipulation function below.
 // source: https://www.hackerrank.com/challenges/crush/problem
-func arrayManipulation(n int32, queries [][]int32) int64 {
+func arrayManipulation2(n int32, queries [][]int32) int64 {
 	arr := make([]int64, n)
 	maxElement := int64(0)
 	for i := 0; i < len(queries); i++ {
@@ -23,6 +23,32 @@ func arrayManipulation(n int32, queries [][]int32) int64 {
 		}
 	}
 	return maxElement
+}
+
+func arrayManipulation(n int32, queries [][]int32) int64 {
+	arr := make([]int64, n+2)
+	for i := 0; i < len(queries); i++ {
+		a := queries[i][0]
+		b := queries[i][1]
+		k := queries[i][2]
+		arr[a] += int64(k)
+		arr[b+1] -= int64(k)
+	}
+
+	max := int64(0)
+	value := int64(0)
+	for i := int32(0); i < n; i++ {
+		value += arr[i]
+		max = maxVal(max, value)
+	}
+	return max
+}
+
+func maxVal(a, b int64) int64 {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func main() {
