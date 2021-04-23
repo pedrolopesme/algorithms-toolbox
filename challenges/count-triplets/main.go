@@ -10,6 +10,7 @@ import (
 )
 
 // Complete the countTriplets function below.
+// source: https://www.hackerrank.com/challenges/count-triplets-1/problem
 func countTriplets(arr []int64, r int64) int64 {
 
 	// first turn array into a hashmap
