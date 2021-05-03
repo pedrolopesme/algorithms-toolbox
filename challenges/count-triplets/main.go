@@ -12,9 +12,39 @@ import (
 // Complete the countTriplets function below.
 // source: https://www.hackerrank.com/challenges/count-triplets-1/problem
 func countTriplets(arr []int64, r int64) int64 {
+	if len(arr) <= 2 {
+		return 0
+	}
+
+	mapArr := map[int64]int64{}
+	mapDoubles := map[Key]int64{}
+	count := int64(0)
+
+	for i := len(arr) - 1; i >= 0; i-- {
+		x := arr[i]
+
+		r_x := r * x
+		r_r_x := r * r_x
+
+		count += mapDoubles[Key{val1: r_x, val2: r_r_x}]
+
+		mapDoubles[Key{val1: x, val2: r_x}] += mapArr[r_x]
+
+		mapArr[x] = mapArr[x] + 1
+	}
+
+	return count
+}
+
+type Key struct {
+	val1, val2 int64
+}
+
+// faster, but not work in some cases
+func countTriplets2(arr []int64, r int64) int64 {
 
 	// first turn array into a hashmap
-	// it will spare us from making heavy searches multiple
+	// it will spare us from making expensive searches multiple
 	// times in the future to find all matching pairs
 	arrMap := make(map[int64]int64, len(arr))
 	for i := 0; i < len(arr); i++ {

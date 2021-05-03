@@ -28,5 +28,5 @@ func TestCountTriplet_Case4(t *testing.T) {
 
 func TestCountTriplet_Case5(t *testing.T) {
 	arr := []int64{1, 1, 1, 1}
-	assert.Equal(t, int64(3), countTriplets(arr, int64(1)))
+	assert.Equal(t, int64(4), countTriplets(arr, int64(1)))
 }
