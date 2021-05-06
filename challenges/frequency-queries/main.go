@@ -5,61 +5,56 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
 )
 
-func InsertSorted(data []int32, e int32) []int32 {
-	index := sort.Search(len(data), func(i int) bool { return data[i] > e })
-	data = append(data, e)
-	copy(data[index+1:], data[index:])
-	data[index] = e
-	return data
-}
-
-func RemoveSorted(data []int32, e int32) []int32 {
-	if len(data) == 0 {
-		return data
-	}
-
-	index := sort.Search(len(data), func(i int) bool { return data[i] > e })
-	if index < len(data) {
-		copy(data[index+1:], data[index:])
-	}
-
-	return data
-}
-
 // Complete the freqQuery function below.
+// source : https://www.hackerrank.com/challenges/frequency-queries/problem
 func freqQuery(queries [][]int32) (ret []int32) {
-	opMap := map[int32]int32{}
-	freq := make([]int32, len(queries))
+	elementsMap := map[int32]int32{}      // maps element -> frequecy
+	freqMap := map[int32]map[int32]bool{} // maps frequency -> elements
 
 	for q := 0; q < len(queries); q++ {
 		query := queries[q]
+		operation := queries[q][0]
 
-		switch query[0] {
+		switch operation {
 		case 1:
-			freq = RemoveSorted(freq, query[1])
-			opMap[query[1]]++
-			freq = InsertSorted(freq, query[1])
+			element := queries[q][1]
+			mapSetter(freqMap, elementsMap[element], element, false) // flagging old frequency to false
+			elementsMap[query[1]]++
+			mapSetter(freqMap, elementsMap[element], element, true) // flagging new frequency to true
 		case 2:
-			if val := opMap[query[1]]; val > 0 {
-				freq = RemoveSorted(freq, query[1])
-				opMap[query[1]]--
-				freq = InsertSorted(freq, query[1])
+			element := queries[q][1]
+			if elementsMap[query[1]] > 0 { // be sure to not decrement an element that doesnt exists
+				mapSetter(freqMap, elementsMap[element], element, false)
+				elementsMap[query[1]]--
+				mapSetter(freqMap, elementsMap[element], element, true)
 			}
 		case 3:
-			i := sort.Search(len(freq), func(i int) bool { return freq[i] >= query[1] })
-			if i < len(freq) && freq[i] == query[1] {
-				ret = append(ret, int32(1))
-			} else {
+			freq := queries[q][1]
+			found := false
+			for _, exists := range freqMap[freq] {
+				if exists {
+					ret = append(ret, int32(1))
+					found = true
+					break
+				}
+			}
+			if !found {
 				ret = append(ret, int32(0))
 			}
 		}
 	}
 	return
+}
+
+func mapSetter(m map[int32]map[int32]bool, key, element int32, val bool) {
+	if m[key] == nil {
+		m[key] = make(map[int32]bool)
+	}
+	m[key][element] = val
 }
 
 func main() {
