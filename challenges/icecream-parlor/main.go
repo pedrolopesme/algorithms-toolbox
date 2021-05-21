@@ -54,9 +54,10 @@ func whatFlavors(cost []int32, money int32) []int32 {
 		ids[1] = temp
 	}
 
-	for id := range ids {
-		fmt.Print(id)
+	for i := 0; i < len(ids); i++ {
+		fmt.Printf("%d ", ids[i])
 	}
+	fmt.Println("")
 	return ids
 }
 
