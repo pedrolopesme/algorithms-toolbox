@@ -36,8 +36,8 @@ func (b *Board) PrintColumnHeader() {
 }
 
 func (b *Board) Print() {
-	columnsSize := len(b.cells)
-	rowSize := len(b.cells[0])
+	rowSize := len(b.cells)
+	columnsSize := len(b.cells[0])
 
 	// walk through the entire matrix to print cells
 	for row := 0; row < rowSize; row++ {
@@ -50,7 +50,6 @@ func (b *Board) Print() {
 			if column == 0 {
 				b.PrintRowHeader(row)
 			}
-
 			b.cells[row][column].Print()
 		}
 		fmt.Println()
@@ -73,6 +72,6 @@ func New(columnsSize, rowSize int) *Board {
 }
 
 func main() {
-	board := New(4, 5)
+	board := New(10, 5)
 	board.Print()
 }
