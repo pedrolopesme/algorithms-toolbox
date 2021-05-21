@@ -24,6 +24,10 @@ type Board struct {
 	cells [][]Cell
 }
 
+func (b *Board) PrintRowHeader(row int) {
+	fmt.Printf("%s ", string(rune(row+65)))
+}
+
 func (b *Board) PrintColumnHeader() {
 	for column := 0; column < len(b.cells[0]); column++ {
 		fmt.Printf("%d ", column)
@@ -39,7 +43,12 @@ func (b *Board) Print() {
 	for row := 0; row < rowSize; row++ {
 		for column := 0; column < columnsSize; column++ {
 			if row == 0 && column == 0 {
+				fmt.Print("   ") // <- creating an empty corner at top-left on the board
 				b.PrintColumnHeader()
+			}
+
+			if column == 0 {
+				b.PrintRowHeader(row)
 			}
 
 			b.cells[row][column].Print()
@@ -64,6 +73,6 @@ func New(columnsSize, rowSize int) *Board {
 }
 
 func main() {
-	board := New(5, 5)
+	board := New(4, 5)
 	board.Print()
 }
