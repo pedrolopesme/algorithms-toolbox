@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 type Cell struct {
 	played bool
@@ -36,6 +40,7 @@ func (b *Board) PrintColumnHeader() {
 }
 
 func (b *Board) Print() {
+	fmt.Print("\033[H\033[2J")
 	rowSize := len(b.cells)
 	columnsSize := len(b.cells[0])
 
@@ -73,5 +78,17 @@ func New(columnsSize, rowSize int) *Board {
 
 func main() {
 	board := New(10, 5)
-	board.Print()
+	scanner := bufio.NewScanner(os.Stdin)
+
+	for {
+		board.Print()
+		fmt.Print("-> Type row and column number (e.g. A1) - or exit to quit: \n")
+		scanner.Scan()
+		input := scanner.Text()
+
+		if input == "exit" {
+			break
+		}
+
+	}
 }
